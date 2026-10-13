@@ -8,9 +8,18 @@ import { MarketplacePage } from '@/features/marketplace/pages/MarketplacePage';
 import CartPage from '@/pages/CartPage';
 import CheckoutPage from '@/pages/CheckoutPage';
 
+// Buyer Layout & Pages
+import { BuyerLayout } from '@/components/layout/BuyerLayout';
+import { BuyerDashboardPage } from '@/features/dashboard/pages/BuyerDashboardPage';
+import { MarketplacePage } from '@/features/marketplace/pages/MarketplacePage';
+import { ProductDetailPage } from '@/features/marketplace/pages/ProductDetailPage';
+import { KonsultasiPage } from '@/features/konsultasi/pages/KonsultasiPage';
+
+// Seller Layout & Pages
 import { SellerLayout } from '@/components/seller/SellerLayout';
 import SellerDashboardPage from '@/pages/seller/SellerDashboardPage';
 import SellerMarketplacePage from '@/pages/seller/SellerMarketplacePage';
+import SellerProductsPage from '@/pages/seller/SellerProductsPage';
 import AddProductPage from '@/pages/seller/AddProductPage';
 import SellerWastePage from '@/pages/seller/SellerWastePage';
 import AddWastePage from '@/pages/seller/AddWastePage';
@@ -18,16 +27,6 @@ import SellerOrdersPage from '@/pages/seller/SellerOrdersPage';
 import SellerAnalyticsPage from '@/pages/seller/SellerAnalyticsPage';
 import SellerProfilePage from '@/pages/seller/SellerProfilePage';
 import SellerConsultationPage from '@/pages/seller/SellerConsultationPage';
-
-// Placeholder pages for buyer
-const PlaceholderPage = ({ title }: { title: string }) => (
-  <div className="flex items-center justify-center min-h-[60vh]">
-    <div className="text-center bg-white p-8 rounded-2xl border border-gray-100 shadow-xs max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-2 text-gray-800">{title}</h1>
-      <p className="text-xs text-gray-500">Halaman ini sedang dalam tahap pengembangan.</p>
-    </div>
-  </div>
-);
 
 export const router = createBrowserRouter([
   // Public routes
@@ -44,26 +43,30 @@ export const router = createBrowserRouter([
     element: <RegisterPage />,
   },
 
-  // Pembeli routes with BuyerLayout
+  // Pembeli routes (with BuyerLayout)
   {
     path: '/pembeli',
     element: <BuyerLayout />,
     children: [
       {
-        path: 'marketplace',
-        element: <MarketplacePage />,
+        path: '',
+        element: <Navigate to="dasbor" replace />,
       },
       {
         path: 'dasbor',
         element: <BuyerDashboardPage />,
       },
       {
+        path: 'marketplace',
+        element: <MarketplacePage />,
+      },
+      {
         path: 'produk/:id',
-        element: <PlaceholderPage title="Detail Produk" />,
+        element: <ProductDetailPage />,
       },
       {
         path: 'konsultasi',
-        element: <PlaceholderPage title="Konsultasi Mentor" />,
+        element: <KonsultasiPage />,
       },
       {
         path: 'keranjang',

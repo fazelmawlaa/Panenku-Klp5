@@ -85,10 +85,10 @@ export const MarketplaceFilterBar: React.FC<MarketplaceFilterBarProps> = ({
         {/* Main Search Input Form */}
         <form
           onSubmit={handleSearchSubmit}
-          className="flex-1 bg-white rounded-2xl border border-gray-100 shadow-xs p-1.5 pl-4 flex items-center gap-2 transition-all focus-within:border-emerald-500 focus-within:ring-2 focus-within:ring-emerald-100/50"
+          className="flex-1 bg-white rounded-full border border-gray-100 shadow-2xs pl-5 sm:pl-6 flex items-center overflow-hidden transition-all focus-within:border-emerald-500 focus-within:ring-2 focus-within:ring-emerald-100/50"
         >
-          <div className="text-gray-400 shrink-0">
-            <Search className="w-5 h-5 text-gray-400" />
+          <div className="text-[#479e6d] shrink-0 flex items-center">
+            <Search className="w-5 h-5 text-[#479e6d]" strokeWidth={2.2} />
           </div>
           <input
             type="text"
@@ -98,7 +98,7 @@ export const MarketplaceFilterBar: React.FC<MarketplaceFilterBarProps> = ({
               handleApplyFilters(e.target.value);
             }}
             placeholder="Cari hasil panen segar, limbah tani..."
-            className="w-full bg-transparent text-sm text-gray-800 placeholder-gray-400 focus:outline-none py-2 px-2"
+            className="w-full bg-transparent text-sm text-gray-800 placeholder-gray-400 focus:outline-none py-3.5 px-3"
           />
           {searchInput && (
             <button
@@ -107,16 +107,16 @@ export const MarketplaceFilterBar: React.FC<MarketplaceFilterBarProps> = ({
                 setSearchInput('');
                 handleApplyFilters('');
               }}
-              className="p-1 text-gray-400 hover:text-gray-600 rounded-full"
+              className="p-1 text-gray-400 hover:text-gray-600 rounded-full mr-2 cursor-pointer"
             >
               <X className="w-4 h-4" />
             </button>
           )}
           <button
             type="submit"
-            className="bg-[#529b53] hover:bg-[#438344] active:bg-[#396e3a] text-white text-xs font-bold px-8 py-3 rounded-xl transition-all tracking-wider uppercase shadow-xs shrink-0 cursor-pointer"
+            className="bg-[#61a969] hover:bg-[#529459] active:bg-[#46804d] text-white text-xs sm:text-sm font-bold px-8 sm:px-10 py-3.5 transition-all tracking-wider uppercase shadow-xs shrink-0 cursor-pointer self-stretch flex items-center justify-center"
           >
-            Cari
+            CARI
           </button>
         </form>
 
@@ -125,21 +125,21 @@ export const MarketplaceFilterBar: React.FC<MarketplaceFilterBarProps> = ({
           <button
             type="button"
             onClick={() => setIsFilterOpen(!isFilterOpen)}
-            className={`w-full sm:w-auto min-h-[50px] bg-white border rounded-2xl px-5 py-3 flex items-center justify-between gap-3 text-xs font-semibold transition-all shadow-xs cursor-pointer ${
+            className={`w-full sm:w-auto h-full min-h-[48px] bg-white border rounded-full px-5 sm:px-6 py-3 flex items-center justify-between gap-3 text-xs sm:text-sm font-medium transition-all shadow-2xs cursor-pointer ${
               isFilterOpen || hasActiveFilters
                 ? 'border-emerald-500 text-emerald-800 bg-emerald-50/20'
                 : 'border-gray-100 text-gray-700 hover:border-gray-200 hover:bg-gray-50'
             }`}
           >
             <div className="flex items-center gap-2.5">
-              <SlidersHorizontal className="w-4 h-4 text-gray-600" />
+              <SlidersHorizontal className="w-4 h-4 text-gray-600" strokeWidth={1.8} />
               <span>Filter</span>
               {hasActiveFilters && (
-                <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                <span className="w-2 h-2 rounded-full bg-[#61a969]" />
               )}
             </div>
             <ChevronDown
-              className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${
+              className={`w-3.5 h-3.5 text-gray-400 transition-transform duration-200 ${
                 isFilterOpen ? 'rotate-180 text-emerald-600' : ''
               }`}
             />

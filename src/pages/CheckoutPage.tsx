@@ -98,81 +98,75 @@ export const CheckoutPage: React.FC = () => {
 
   if (orderSuccess) {
     return (
-      <div className="min-h-screen bg-[#f8f9fa] text-neutral-900 font-sans flex flex-col justify-between">
-        <AppNavbar cartCount={0} />
-        <main className="flex-1 max-w-3xl mx-auto px-4 sm:px-6 py-12 w-full flex items-center justify-center">
-          <div className="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm text-center w-full">
-            <div className="w-20 h-20 rounded-full bg-emerald-50 text-[#007a3d] flex items-center justify-center mx-auto mb-6 shadow-inner">
-              <CheckCircle2 className="w-10 h-10 stroke-[2.5]" />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 w-full flex items-center justify-center">
+        <div className="bg-white rounded-3xl p-8 sm:p-12 border border-neutral-200/90 shadow-sm text-center w-full">
+          <div className="w-20 h-20 rounded-full bg-emerald-50 text-[#007a3d] flex items-center justify-center mx-auto mb-6 shadow-inner">
+            <CheckCircle2 className="w-10 h-10 stroke-[2.5]" />
+          </div>
+
+          <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full uppercase tracking-wider">
+            Pesanan Terkonfirmasi
+          </span>
+
+          <h1 className="text-2xl sm:text-3xl font-black text-neutral-900 mt-4 tracking-tight">
+            Terima Kasih, Pesanan Berhasil!
+          </h1>
+          <p className="text-sm text-neutral-500 mt-2 max-w-md mx-auto">
+            Nomor Pesanan:{' '}
+            <span className="font-mono font-bold text-neutral-800">{orderSuccess.id}</span>.
+            Penjual mitra Panenku akan segera memproses dan menyiapkan hasil tani Anda.
+          </p>
+
+          <div className="bg-[#f8f9fa] rounded-2xl p-5 my-6 text-left border border-neutral-200/80">
+            <div className="flex justify-between text-xs sm:text-sm text-neutral-600 mb-2">
+              <span>Penerima:</span>
+              <span className="font-bold text-neutral-900">{recipientName}</span>
             </div>
-
-            <span className="text-xs font-bold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full uppercase tracking-wider">
-              Pesanan Terkonfirmasi
-            </span>
-
-            <h1 className="text-2xl sm:text-3xl font-black text-neutral-900 mt-4 tracking-tight">
-              Terima Kasih, Pesanan Berhasil!
-            </h1>
-            <p className="text-sm text-neutral-500 mt-2 max-w-md mx-auto">
-              Nomor Pesanan:{' '}
-              <span className="font-mono font-bold text-neutral-800">{orderSuccess.id}</span>.
-              Penjual mitra Panenku akan segera memproses dan menyiapkan hasil tani Anda.
-            </p>
-
-            <div className="bg-[#f8f9fa] rounded-2xl p-5 my-6 text-left border border-neutral-200/80">
-              <div className="flex justify-between text-xs sm:text-sm text-neutral-600 mb-2">
-                <span>Penerima:</span>
-                <span className="font-bold text-neutral-900">{recipientName}</span>
-              </div>
-              <div className="flex justify-between text-xs sm:text-sm text-neutral-600 mb-2">
-                <span>Tujuan:</span>
-                <span className="font-semibold text-neutral-900 text-right max-w-xs">{address}, {city}</span>
-              </div>
-              <div className="flex justify-between text-xs sm:text-sm text-neutral-600 mb-2">
-                <span>Total Pembayaran:</span>
-                <span className="font-black text-[#007a3d]">{formatRupiah(orderSuccess.total)}</span>
-              </div>
-              <div className="flex justify-between text-xs sm:text-sm text-neutral-600">
-                <span>Metode:</span>
-                <span className="font-bold text-neutral-800 uppercase">
-                  {paymentMethod === 'qris'
-                    ? 'QRIS Panenku'
-                    : paymentMethod === 'transfer'
-                    ? 'Transfer Bank'
-                    : 'Saldo Escrow Panenku'}
-                </span>
-              </div>
+            <div className="flex justify-between text-xs sm:text-sm text-neutral-600 mb-2">
+              <span>Tujuan:</span>
+              <span className="font-semibold text-neutral-900 text-right max-w-xs">{address}, {city}</span>
             </div>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link
-                to="/pembeli/keranjang"
-                className="w-full sm:w-auto px-6 py-3 rounded-full text-xs font-bold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 transition text-center"
-              >
-                Kembali ke Keranjang
-              </Link>
-              <Link
-                to="/pembeli/dasbor"
-                className="w-full sm:w-auto px-7 py-3 rounded-full text-xs font-bold text-white bg-[#007a3d] hover:bg-[#006633] transition shadow-md shadow-[#007a3d]/25 text-center"
-              >
-                Lihat di Dashboard
-              </Link>
+            <div className="flex justify-between text-xs sm:text-sm text-neutral-600 mb-2">
+              <span>Total Pembayaran:</span>
+              <span className="font-black text-[#007a3d]">{formatRupiah(orderSuccess.total)}</span>
+            </div>
+            <div className="flex justify-between text-xs sm:text-sm text-neutral-600">
+              <span>Metode:</span>
+              <span className="font-bold text-neutral-800 uppercase">
+                {paymentMethod === 'qris'
+                  ? 'QRIS Panenku'
+                  : paymentMethod === 'transfer'
+                  ? 'Transfer Bank'
+                  : 'Saldo Escrow Panenku'}
+              </span>
             </div>
           </div>
-        </main>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <Link
+              to="/pembeli/keranjang"
+              className="w-full sm:w-auto px-6 py-3 rounded-full text-xs font-bold text-neutral-700 bg-neutral-100 hover:bg-neutral-200 transition text-center"
+            >
+              Kembali ke Keranjang
+            </Link>
+            <Link
+              to="/pembeli/dasbor"
+              className="w-full sm:w-auto px-7 py-3 rounded-full text-xs font-bold text-white bg-[#007a3d] hover:bg-[#006633] transition shadow-md shadow-[#007a3d]/25 text-center"
+            >
+              Lihat di Dashboard
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#f8f9fa] text-neutral-900 font-sans flex flex-col justify-between">
-      <AppNavbar cartCount={items.length} />
-
-      <main className="flex-1 w-full max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 pb-40">
-        {/* Navigation back and Title */}
-        <div className="mb-8">
-          <Link
-            to="/pembeli/keranjang"
+    <div className="w-full pb-32">
+      {/* Navigation back and Title */}
+      <div className="mb-8">
+        <Link
+          to="/pembeli/keranjang"
             className="inline-flex items-center gap-2 text-xs font-bold text-neutral-500 hover:text-neutral-900 mb-3 transition"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -529,9 +523,8 @@ export const CheckoutPage: React.FC = () => {
             </aside>
           </form>
         )}
-      </main>
-    </div>
-  );
+      </div>
+    );
 };
 
 export default CheckoutPage;

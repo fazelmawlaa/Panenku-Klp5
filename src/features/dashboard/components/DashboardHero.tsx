@@ -15,6 +15,19 @@ export const DashboardHero: React.FC = () => {
       
       {/* Decorative gradient glow */}
       <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-emerald-400/10 blur-3xl pointer-events-none" />
+import bgDashboard from '@/assets/bg_dashboard.jpg';
+
+export const DashboardHero: React.FC = () => {
+  return (
+    <div className="relative overflow-hidden rounded-3xl text-white p-7 sm:p-9 shadow-sm mb-6" style={{ minHeight: '140px' }}>
+      {/* Background Photo */}
+      <img
+        src={bgDashboard}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0d2b1a]/90 via-[#143926]/75 to-[#1b4332]/40" />
 
       <div className="relative z-10 flex items-center justify-between">
         <div className="max-w-2xl space-y-2 sm:space-y-3">
