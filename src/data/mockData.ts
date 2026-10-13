@@ -1,4 +1,4 @@
-import type { Product, User, Mentor, BuyerStats, BuyerTransaction } from '@/types';
+import type { Product, User, Mentor, ChatSession, BuyerStats, BuyerTransaction } from '@/types';
 
 export const mockProducts: Product[] = [
   {
@@ -14,7 +14,7 @@ export const mockProducts: Product[] = [
     maxStock: 200,
     rating: 5,
     image: '/images/cabai-busuk.jpg',
-    description: 'Cabai sisa panen / sortiran yang cocok untuk bahan kompos dan pupuk organik.'
+    description: 'Cabai sisa panen / sortiran yang cocok untuk bahan kompos dan pupuk organik.',
   },
   {
     id: '2',
@@ -31,7 +31,7 @@ export const mockProducts: Product[] = [
     rating: 5,
     cultivation: 'Organik',
     image: '/images/cabe-calang.jpg',
-    description: 'cabe terbaik se aceh'
+    description: 'cabe terbaik se aceh',
   },
   {
     id: '3',
@@ -47,7 +47,7 @@ export const mockProducts: Product[] = [
     rating: 5,
     cultivation: 'Organik',
     image: '/images/kopi-arabika.jpg',
-    description: 'Kopi Arabika asli Gayo dengan aroma kuat dan cita rasa khas.'
+    description: 'Kopi Arabika asli Gayo dengan aroma kuat dan cita rasa khas.',
   },
   {
     id: '4',
@@ -62,7 +62,7 @@ export const mockProducts: Product[] = [
     maxStock: 200,
     rating: 5,
     image: '/images/sekam-padi.jpg',
-    description: 'Sekam padi kering berkualitas tinggi untuk campuran media tanam & pakan.'
+    description: 'Sekam padi kering berkualitas tinggi untuk campuran media tanam & pakan.',
   },
   {
     id: '5',
@@ -79,50 +79,169 @@ export const mockProducts: Product[] = [
     rating: 5,
     cultivation: 'Konvensional',
     image: '/images/bawang-merah.jpg',
-    description: 'Bawang merah Brebes wangi dan renyah, siap panen November 2026.'
-  }
+    description: 'Bawang merah Brebes wangi dan renyah, siap panen November 2026.',
+  },
 ];
 
 export const mockUsers: User[] = [
   {
-    id: '1',
-    name: 'Budi Pembeli',
-    email: 'budi@example.com',
-    role: 'pembeli'
+    id: 'user-1',
+    name: 'fazel',
+    email: 'fazel@example.com',
+    role: 'pembeli',
   },
   {
-    id: '2',
+    id: 'user-2',
     name: 'Ani Penjual',
     email: 'ani@example.com',
-    role: 'penjual'
-  }
+    role: 'penjual',
+  },
 ];
 
 export const mockMentors: Mentor[] = [
   {
-    id: '1',
-    name: 'Pak Harto',
-    expertise: 'Budidaya Padi Organik',
-    experience: '20 tahun',
-    rate: 100000,
-    image: '/images/mentor-1.jpg'
+    id: 'mentor-1',
+    name: 'andrian',
+    expertise: 'Spesialis Budidaya',
+    specializations: ['Budidaya Padi Organik', 'Pengelolaan Lahan'],
+    experience: '1 Tahun',
+    experienceYears: 1,
+    rate: 75000,
+    image: '/images/mentor-andrian.jpg',
+    category: 'Budidaya Padi & Pangan',
+    rating: 98,
+    totalSessions: 42,
+    status: 'aktif',
+    bio: 'Spesialis budidaya padi organik dengan metode SRI yang telah terbukti meningkatkan hasil panen.',
   },
   {
-    id: '2',
-    name: 'Bu Siti',
-    expertise: 'Budidaya Sayuran Hidroponik',
-    experience: '15 tahun',
-    rate: 120000,
-    image: '/images/mentor-2.jpg'
+    id: 'mentor-2',
+    name: 'Muhammad Fazel Mawla',
+    expertise: 'Budidaya Padi Organik, Pengomposan Sekam',
+    specializations: ['Budidaya Padi Organik', 'Pengomposan Sekam', 'Pembukaan Sawah'],
+    experience: '5 Tahun',
+    experienceYears: 5,
+    rate: 75000,
+    image: '/images/mentor-fazel.jpg',
+    category: 'Budidaya Padi & Pangan',
+    rating: 98,
+    totalSessions: 87,
+    status: 'aktif',
+    bio: 'Ahli budidaya padi organik dan pengolahan limbah sekam menjadi kompos berkualitas tinggi.',
   },
   {
-    id: '3',
-    name: 'Pak Ahmad',
-    expertise: 'Budidaya Kopi Arabika',
-    experience: '25 tahun',
-    rate: 150000,
-    image: '/images/mentor-3.jpg'
-  }
+    id: 'mentor-3',
+    name: 'Bu Siti Rahayu',
+    expertise: 'Hortikultura & Sayuran Hidroponik',
+    specializations: ['Hidroponik NFT', 'Aquaponik', 'Sayuran Organik'],
+    experience: '8 Tahun',
+    experienceYears: 8,
+    rate: 95000,
+    image: '/images/mentor-siti.jpg',
+    category: 'Hortikultura',
+    rating: 96,
+    totalSessions: 156,
+    status: 'aktif',
+    bio: 'Konsultan hidroponik berpengalaman dengan fokus pada sistem NFT dan DFT untuk sayuran premium.',
+  },
+  {
+    id: 'mentor-4',
+    name: 'Pak Ahmad Kopi',
+    expertise: 'Budidaya Kopi Arabika & Robusta',
+    specializations: ['Kopi Arabika Specialty', 'Post Harvest Processing', 'Cupping'],
+    experience: '15 Tahun',
+    experienceYears: 15,
+    rate: 125000,
+    image: '/images/mentor-ahmad.jpg',
+    category: 'Perkebunan',
+    rating: 99,
+    totalSessions: 203,
+    status: 'aktif',
+    bio: 'Q Grader tersertifikasi dengan pengalaman luas di perkebunan kopi specialty Indonesia.',
+  },
+  {
+    id: 'mentor-5',
+    name: 'Dwi Lestari',
+    expertise: 'Teknologi Smart Farming',
+    specializations: ['IoT Pertanian', 'Drone Pertanian', 'Precision Agriculture'],
+    experience: '4 Tahun',
+    experienceYears: 4,
+    rate: 110000,
+    image: '/images/mentor-dwi.jpg',
+    category: 'Teknologi Pertanian',
+    rating: 95,
+    totalSessions: 65,
+    status: 'sibuk',
+    bio: 'Engineer pertanian yang mengkhususkan diri pada implementasi teknologi IoT dan drone untuk optimasi hasil panen.',
+  },
+  {
+    id: 'mentor-6',
+    name: 'Hendra Wijaya',
+    expertise: 'Peternakan Sapi & Kambing',
+    specializations: ['Sapi Perah', 'Kambing Etawa', 'Pakan Fermentasi'],
+    experience: '12 Tahun',
+    experienceYears: 12,
+    rate: 85000,
+    image: '/images/mentor-hendra.jpg',
+    category: 'Peternakan',
+    rating: 94,
+    totalSessions: 128,
+    status: 'aktif',
+    bio: 'Dokter hewan dan peternak yang berpengalaman dalam manajemen kesehatan ternak dan optimasi produksi susu.',
+  },
+];
+
+const now = new Date('2026-07-13T16:00:00');
+
+export const mockChatSessions: ChatSession[] = [
+  {
+    id: 'session-1',
+    mentorId: 'mentor-2',
+    mentorName: 'Muhammad Fazel Mawla',
+    mentorImage: '/images/mentor-fazel.jpg',
+    buyerId: 'user-1',
+    buyerName: 'fazel',
+    topic: 'pembukaan sawah',
+    status: 'aktif',
+    createdAt: now.toISOString(),
+    isPaid: true,
+    messages: [
+      {
+        id: 'msg-1',
+        sessionId: 'session-1',
+        senderId: 'mentor-2',
+        senderName: 'Muhammad Fazel Mawla',
+        senderRole: 'mentor',
+        content: 'Halo! Saya Muhammad Fazel Mawla. Terima kasih sudah memesan sesi konsultasi dengan topik "pembukaan sawah". Ada yang bisa saya bantu hari ini?',
+        timestamp: now.toISOString(),
+        isRead: true,
+      },
+    ],
+  },
+  {
+    id: 'session-2',
+    mentorId: 'mentor-1',
+    mentorName: 'andrian',
+    mentorImage: '/images/mentor-andrian.jpg',
+    buyerId: 'user-1',
+    buyerName: 'fazel',
+    topic: 'pembukaan lahan sawah',
+    status: 'aktif',
+    createdAt: new Date(now.getTime() - 3600000).toISOString(),
+    isPaid: true,
+    messages: [
+      {
+        id: 'msg-2',
+        sessionId: 'session-2',
+        senderId: 'mentor-1',
+        senderName: 'andrian',
+        senderRole: 'mentor',
+        content: 'Halo saya andrian. Terima kasih sudah memesan sesi konsultasi dengan topik "pembukaan lahan sawah". Ada yang bisa saya bantu?',
+        timestamp: new Date(now.getTime() - 3600000).toISOString(),
+        isRead: true,
+      },
+    ],
+  },
 ];
 
 export const mockBuyerStats: BuyerStats = {
@@ -171,4 +290,3 @@ export const mockBuyerTransactions: BuyerTransaction[] = [
     type: 'produk',
   },
 ];
-

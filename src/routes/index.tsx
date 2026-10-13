@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { BuyerLayout } from '@/components/layout/BuyerLayout';
 import { BuyerDashboardPage } from '@/features/dashboard/pages/BuyerDashboardPage';
 import { ProductDetailPage } from '@/features/marketplace/pages/ProductDetailPage';
+import { KonsultasiPage } from '@/features/konsultasi/pages/KonsultasiPage';
 import { MarketplacePage } from '@/features/marketplace/pages/MarketplacePage';
 import LandingPage from '@/pages/LandingPage';
 import LoginPage from '@/pages/LoginPage';
@@ -21,6 +22,10 @@ const PlaceholderPage = ({ title }: { title: string }) => (
 );
 
 export const router = createBrowserRouter([
+  // Default redirect ke fitur utama branch ini (Konsultasi)
+  {
+    path: '/',
+    element: <Navigate to="/pembeli/konsultasi" replace />,
   {
     path: '/',
     element: <LandingPage />,
@@ -38,6 +43,14 @@ export const router = createBrowserRouter([
     element: <BuyerLayout />,
     children: [
       {
+        path: '',
+        element: <Navigate to="konsultasi" replace />,
+      },
+      {
+        path: 'dasbor',
+        element: <BuyerDashboardPage />,
+      },
+      {
         path: 'marketplace',
         element: <MarketplacePage />,
       },
@@ -51,7 +64,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'konsultasi',
-        element: <PlaceholderPage title="Konsultasi Mentor" />,
+        element: <KonsultasiPage />,
       },
       {
         path: 'keranjang',
