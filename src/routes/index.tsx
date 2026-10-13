@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import LandingPage from '@/pages/LandingPage';
 import LoginPage from '@/pages/LoginPage';
 import RegisterPage from '@/pages/RegisterPage';
+import CartPage from '@/pages/CartPage';
+import CheckoutPage from '@/pages/CheckoutPage';
 
 // Placeholder pages
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -47,11 +49,11 @@ export const router = createBrowserRouter([
   },
   {
     path: '/pembeli/keranjang',
-    element: <PlaceholderPage title="Keranjang Belanja" />,
+    element: <CartPage />,
   },
   {
     path: '/pembeli/checkout',
-    element: <PlaceholderPage title="Checkout" />,
+    element: <CheckoutPage />,
   },
 
   // Penjual routes
