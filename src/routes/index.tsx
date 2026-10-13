@@ -1,8 +1,14 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import { BuyerLayout } from '@/components/layout/BuyerLayout';
-import { MarketplacePage } from '@/features/marketplace/pages/MarketplacePage';
 import { BuyerDashboardPage } from '@/features/dashboard/pages/BuyerDashboardPage';
 import { ProductDetailPage } from '@/features/marketplace/pages/ProductDetailPage';
+import { MarketplacePage } from '@/features/marketplace/pages/MarketplacePage';
+import LandingPage from '@/pages/LandingPage';
+import LoginPage from '@/pages/LoginPage';
+import RegisterPage from '@/pages/RegisterPage';
+import CartPage from '@/pages/CartPage';
+import CheckoutPage from '@/pages/CheckoutPage';
+import SellerOrdersPage from '@/pages/SellerOrdersPage';
 
 // Placeholder pages
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -15,32 +21,29 @@ const PlaceholderPage = ({ title }: { title: string }) => (
 );
 
 export const router = createBrowserRouter([
-  // Default redirect to Dashboard / Marketplace
   {
     path: '/',
-    element: <Navigate to="/pembeli/dasbor" replace />,
+    element: <LandingPage />,
   },
   {
     path: '/masuk',
-    element: <PlaceholderPage title="Halaman Masuk" />,
+    element: <LoginPage />,
   },
   {
     path: '/daftar',
-    element: <PlaceholderPage title="Halaman Daftar" />,
+    element: <RegisterPage />,
   },
-
-  // Pembeli routes with BuyerLayout
   {
     path: '/pembeli',
     element: <BuyerLayout />,
     children: [
       {
-        path: 'dasbor',
-        element: <BuyerDashboardPage />,
-      },
-      {
         path: 'marketplace',
         element: <MarketplacePage />,
+      },
+      {
+        path: 'dasbor',
+        element: <BuyerDashboardPage />,
       },
       {
         path: 'produk/:id',
@@ -52,16 +55,14 @@ export const router = createBrowserRouter([
       },
       {
         path: 'keranjang',
-        element: <PlaceholderPage title="Keranjang Belanja" />,
+        element: <CartPage />,
       },
       {
         path: 'checkout',
-        element: <PlaceholderPage title="Checkout" />,
+        element: <CheckoutPage />,
       },
     ],
   },
-
-  // Penjual routes
   {
     path: '/penjual/dasbor',
     element: <PlaceholderPage title="Dasbor Penjual" />,
@@ -80,7 +81,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/penjual/pesanan',
-    element: <PlaceholderPage title="Kelola Pesanan" />,
+    element: <SellerOrdersPage />,
   },
   {
     path: '/penjual/analitik',
