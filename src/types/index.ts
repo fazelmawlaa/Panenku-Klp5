@@ -20,6 +20,8 @@ export interface Product {
   pricePerUnit: number;
   unit: 'kg' | 'pcs';
   stock: number;
+  maxStock?: number;
+  rating?: number;
   harvestDate?: string;
   cultivation?: 'Organik' | 'Konvensional';
   image: string;
