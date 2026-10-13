@@ -4,7 +4,8 @@ import LoginPage from '@/pages/LoginPage';
 import RegisterPage from '@/pages/RegisterPage';
 import { SellerLayout } from '@/components/seller/SellerLayout';
 import SellerDashboardPage from '@/pages/seller/SellerDashboardPage';
-import SellerProductsPage from '@/pages/seller/SellerProductsPage';
+import SellerMarketplacePage from '@/pages/seller/SellerMarketplacePage';
+import AddProductPage from '@/pages/seller/AddProductPage';
 import SellerOrdersPage from '@/pages/seller/SellerOrdersPage';
 import SellerWastePage from '@/pages/seller/SellerWastePage';
 import SellerAnalyticsPage from '@/pages/seller/SellerAnalyticsPage';
@@ -76,12 +77,16 @@ export const router = createBrowserRouter([
         element: <SellerDashboardPage />,
       },
       {
-        path: 'produk',
-        element: <SellerProductsPage />,
+        path: 'marketplace',
+        element: <SellerMarketplacePage />,
       },
       {
-        path: 'marketplace',
-        element: <SellerProductsPage />,
+        path: 'produk',
+        element: <SellerMarketplacePage />,
+      },
+      {
+        path: 'produk/tambah',
+        element: <AddProductPage />,
       },
       {
         path: 'limbah',
@@ -102,6 +107,10 @@ export const router = createBrowserRouter([
       {
         path: 'konsultasi',
         element: <SellerConsultationPage />,
+      },
+      {
+        path: 'kalender',
+        element: <SellerDashboardPage />,
       },
     ],
   },
