@@ -12,10 +12,9 @@ import {
   QrCode,
   Wallet,
 } from 'lucide-react';
-import { AppNavbar } from '@/components/layout/AppNavbar';
 import { cartService } from '@/services/CartService';
-import { orderService } from '@/services';
-import type { CartItem, Order } from '@/types';
+import { orderService, buyerDashboardService } from '@/services';
+import type { CartItem, Order, BuyerTransaction } from '@/types';
 import cabaiBusukImg from '@/assets/cabai_busuk.jpg';
 
 export const CheckoutPage: React.FC = () => {
@@ -73,9 +72,10 @@ export const CheckoutPage: React.FC = () => {
     setIsSubmitting(true);
 
     setTimeout(() => {
+      const orderCode = 'ORD-' + Math.floor(1000 + Math.random() * 9000);
       const newOrder: Order = {
-        id: 'ORD-' + Date.now(),
-        buyerId: 'user-fazel',
+        id: orderCode,
+        buyerId: 'user-1',
         buyerName: recipientName,
         items,
         total,
@@ -85,6 +85,29 @@ export const CheckoutPage: React.FC = () => {
       };
 
       orderService.create(newOrder);
+
+      // Record in buyer dashboard transaction history
+      const nowStr = new Date().toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+      const summaryTitle = items
+        .map((i) => `${i.product.name} (${i.qty} ${i.product.unit})`)
+        .join(', ');
+
+      const newTrx: BuyerTransaction = {
+        id: 'trx-' + Date.now(),
+        code: orderCode,
+        title: summaryTitle.length > 40 ? summaryTitle.slice(0, 37) + '...' : summaryTitle,
+        date: nowStr,
+        amount: total,
+        status: 'PAID',
+        type: 'produk',
+      };
+      buyerDashboardService.addTransaction(newTrx);
 
       // Remove checked out items from cart
       items.forEach((item) => {

@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AppNavbar } from './AppNavbar';
 import { cartService } from '@/services/CartService';
 
 export const BuyerLayout: React.FC = () => {
-  const cartCount = cartService.getItems().length;
+  const [cartCount, setCartCount] = useState(() => cartService.getItems().length);
+
+  useEffect(() => {
+    const handleCartUpdate = () => {
+      setCartCount(cartService.getItems().length);
+    };
+    window.addEventListener('cart-updated', handleCartUpdate);
+    return () => window.removeEventListener('cart-updated', handleCartUpdate);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#f8f9fa] flex flex-col font-sans antialiased text-gray-800">

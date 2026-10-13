@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { buyerDashboardService, productService } from '@/services';
 import { DashboardHero } from '../components/DashboardHero';
 import { DashboardStats } from '../components/DashboardStats';
@@ -8,10 +8,18 @@ import { BecomeSellerCard } from '../components/BecomeSellerCard';
 import { DashboardRecommendations } from '../components/DashboardRecommendations';
 
 export const BuyerDashboardPage: React.FC = () => {
-  // Retrieve data using OOP BuyerDashboardService and ProductService
-  const stats = useMemo(() => buyerDashboardService.getStats(), []);
-  const transactions = useMemo(() => buyerDashboardService.getRecentTransactions(4), []);
+  const [stats, setStats] = useState(() => buyerDashboardService.getStats());
+  const [transactions, setTransactions] = useState(() => buyerDashboardService.getRecentTransactions(6));
   const recommendedProducts = useMemo(() => productService.getAll(), []);
+
+  useEffect(() => {
+    const handleRefresh = () => {
+      setStats(buyerDashboardService.getStats());
+      setTransactions(buyerDashboardService.getRecentTransactions(6));
+    };
+    window.addEventListener('dashboard-updated', handleRefresh);
+    return () => window.removeEventListener('dashboard-updated', handleRefresh);
+  }, []);
 
   return (
     <div className="w-full space-y-6">

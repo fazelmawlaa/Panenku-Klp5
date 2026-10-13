@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { MapPin, CheckCircle2, Clock, Recycle, Star, ImageOff } from 'lucide-react';
+import { MapPin, CheckCircle2, Clock, Recycle, Star, ImageOff, ShoppingCart } from 'lucide-react';
 import type { Product } from '@/types';
+import { cartService } from '@/services/CartService';
 
 interface ProductCardProps {
   product: Product;
@@ -125,12 +126,26 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) =>
             <span className="text-[11px] text-gray-400 font-normal">per {product.unit}</span>
           </div>
 
-          {/* Harvest Date Tag (shown on pre-order) */}
-          {product.type === 'preorder' && product.harvestDate && (
-            <span className="text-[10px] font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-md px-2 py-0.5 shadow-2xs">
-              {product.harvestDate}
-            </span>
-          )}
+          {/* Action & Harvest Date */}
+          <div className="flex items-center gap-1.5">
+            {product.type === 'preorder' && product.harvestDate && (
+              <span className="text-[10px] font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-md px-2 py-0.5 shadow-2xs">
+                {product.harvestDate}
+              </span>
+            )}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                cartService.addItem(product, 1);
+              }}
+              className="p-1.5 rounded-lg bg-emerald-50 hover:bg-[#1b4332] text-emerald-700 hover:text-white transition-all shadow-2xs cursor-pointer flex items-center justify-center active:scale-95"
+              title="Tambah ke Keranjang"
+              aria-label="Tambah ke Keranjang"
+            >
+              <ShoppingCart className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       </div>
     </div>

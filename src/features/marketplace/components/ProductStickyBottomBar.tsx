@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ShoppingCart, ArrowRight, Minus, Plus, Check } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { Product } from '@/types';
+import { cartService } from '@/services/CartService';
 
 interface ProductStickyBottomBarProps {
   product: Product;
@@ -27,6 +28,7 @@ export const ProductStickyBottomBar: React.FC<ProductStickyBottomBarProps> = ({ 
   };
 
   const handleAddToCart = () => {
+    cartService.addItem(product, quantity);
     setAddedToast(true);
     setTimeout(() => {
       setAddedToast(false);
@@ -34,7 +36,16 @@ export const ProductStickyBottomBar: React.FC<ProductStickyBottomBarProps> = ({ 
   };
 
   const handleCheckout = () => {
-    navigate('/pembeli/checkout');
+    cartService.addItem(product, quantity);
+    navigate('/pembeli/checkout', {
+      state: {
+        selectedItems: [{ product, qty: quantity }],
+        subtotal: product.pricePerUnit * quantity,
+        shippingCost: 25000,
+        discount: 0,
+        total: product.pricePerUnit * quantity + 25000,
+      },
+    });
   };
 
   return (

@@ -43,6 +43,9 @@ export class CartService {
 
   public saveItems(items: CartItem[]): void {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('cart-updated', { detail: items }));
+    }
   }
 
   public addItem(product: Product, qty: number = 1): CartItem[] {
@@ -81,6 +84,9 @@ export class CartService {
 
   public clearCart(): void {
     localStorage.removeItem(CART_STORAGE_KEY);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('cart-updated', { detail: [] }));
+    }
   }
 
   public getSubtotal(): number {
