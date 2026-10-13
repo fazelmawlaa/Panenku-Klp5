@@ -1,5 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LandingPage from '@/pages/LandingPage';
+import LoginPage from '@/pages/LoginPage';
+import RegisterPage from '@/pages/RegisterPage';
 
 // Placeholder pages
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -19,11 +21,11 @@ export const router = createBrowserRouter([
   },
   {
     path: '/masuk',
-    element: <PlaceholderPage title="Halaman Masuk" />,
+    element: <LoginPage />,
   },
   {
     path: '/daftar',
-    element: <PlaceholderPage title="Halaman Daftar" />,
+    element: <RegisterPage />,
   },
 
   // Pembeli routes
