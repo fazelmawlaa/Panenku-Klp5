@@ -29,8 +29,9 @@ export const mockProducts: Product[] = [
     maxStock: 1000,
     harvestDate: '2026-07-31',
     rating: 5,
+    cultivation: 'Organik',
     image: '/images/cabe-calang.jpg',
-    description: 'Cabai segar kualitas unggul pesanan panen akhir Juli 2026.'
+    description: 'cabe terbaik se aceh'
   },
   {
     id: '3',

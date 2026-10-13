@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { BuyerLayout } from '@/components/layout/BuyerLayout';
 import { BuyerDashboardPage } from '@/features/dashboard/pages/BuyerDashboardPage';
+import { ProductDetailPage } from '@/features/marketplace/pages/ProductDetailPage';
 import { MarketplacePage } from '@/features/marketplace/pages/MarketplacePage';
 import LandingPage from '@/pages/LandingPage';
 import LoginPage from '@/pages/LoginPage';
@@ -46,7 +47,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'produk/:id',
-        element: <PlaceholderPage title="Detail Produk" />,
+        element: <ProductDetailPage />,
       },
       {
         path: 'konsultasi',
