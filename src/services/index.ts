@@ -11,6 +11,13 @@ export const orderService = new OrderService();
 export const mentorService = new MentorService(mockMentors);
 export const buyerDashboardService = new BuyerDashboardService(mockBuyerStats, mockBuyerTransactions);
 
-export { ProductService, OrderService, MentorService, BuyerDashboardService };
-export { ProductService, OrderService, authService, AuthService, cartService, CartService };
-export { BuyerDashboardService };
+export {
+  ProductService,
+  OrderService,
+  MentorService,
+  BuyerDashboardService,
+  authService,
+  AuthService,
+  cartService,
+  CartService,
+};
