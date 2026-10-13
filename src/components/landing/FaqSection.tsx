@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, HelpCircle } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 interface FaqItem {
   question: string;
@@ -8,6 +9,9 @@ interface FaqItem {
 
 export const FaqSection: React.FC = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { ref: listRef, isVisible: listVisible } = useScrollReveal({ threshold: 0.08 });
+  const staggerDelays = ['delay-100', 'delay-200', 'delay-300', 'delay-400', 'delay-500'];
 
   const faqs: FaqItem[] = [
     {
@@ -40,7 +44,7 @@ export const FaqSection: React.FC = () => {
   return (
     <section id="faq" className="py-20 md:py-28 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
       {/* Header */}
-      <div className="text-center mb-14 md:mb-16">
+      <div ref={headerRef} className={`text-center mb-14 md:mb-16 reveal ${headerVisible ? 'reveal-visible' : ''}`}>
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-semibold uppercase tracking-wider mb-3">
           <HelpCircle className="w-3.5 h-3.5" />
           <span>Pertanyaan Umum</span>
@@ -55,13 +59,13 @@ export const FaqSection: React.FC = () => {
       </div>
 
       {/* Accordion List */}
-      <div className="space-y-4">
+      <div ref={listRef} className="space-y-4">
         {faqs.map((faq, idx) => {
           const isOpen = openIdx === idx;
           return (
             <div
               key={idx}
-              className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+              className={`reveal ${staggerDelays[idx] ?? ''} ${listVisible ? 'reveal-visible' : ''} rounded-2xl border transition-all duration-200 overflow-hidden ${
                 isOpen
                   ? 'bg-white border-neutral-300 shadow-lg shadow-neutral-100'
                   : 'bg-neutral-50/80 hover:bg-white border-neutral-200'

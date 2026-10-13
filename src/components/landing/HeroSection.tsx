@@ -13,12 +13,12 @@ export const HeroSection: React.FC = () => {
 
   return (
     <section className="relative min-h-screen flex flex-col justify-between overflow-hidden">
-      {/* Background Image with Dark Vignette Gradient */}
+      {/* Background Image — blur-in entrance */}
       <div className="absolute inset-0 z-0">
         <img
           src={farmingBg}
           alt="Indonesian Farming Landscape"
-          className="w-full h-full object-cover object-center scale-105 animate-fade-in"
+          className="w-full h-full object-cover object-center hero-bg-enter"
         />
         {/* Cinematic Multi-stop Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-black/80" />
@@ -28,10 +28,10 @@ export const HeroSection: React.FC = () => {
       {/* Spacer for floating navbar */}
       <div className="h-28 sm:h-32" />
 
-      {/* Main Center Content */}
+      {/* Main Center Content — staggered entrance */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center my-auto flex flex-col items-center">
         {/* Main Title */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[5.4rem] font-extrabold text-white tracking-tight leading-[1.08] drop-shadow-md">
+        <h1 className="anim-hero-title text-4xl sm:text-6xl md:text-7xl lg:text-[5.4rem] font-extrabold text-white tracking-tight leading-[1.08] drop-shadow-md">
           <span className="inline-block">Grow Green,&nbsp;</span>
           <span className="font-serif italic font-normal text-[#c6f24d] tracking-normal inline-block">
             Grow Better
@@ -44,15 +44,15 @@ export const HeroSection: React.FC = () => {
           </span>
         </h1>
 
-        {/* Subtitle / Paragraph */}
-        <p className="mt-6 sm:mt-8 max-w-2xl sm:max-w-3xl text-sm sm:text-base md:text-lg text-white/85 leading-relaxed font-normal drop-shadow">
+        {/* Subtitle */}
+        <p className="anim-hero-subtitle mt-6 sm:mt-8 max-w-2xl sm:max-w-3xl text-sm sm:text-base md:text-lg text-white/85 leading-relaxed font-normal drop-shadow">
           PANENKU menghubungkan petani berpengalaman dengan pembeli untuk
           transaksi hasil panen, perlengkapan budidaya, limbah sirkular, dan
           konsultasi interaktif dalam satu ekosistem terintegrasi.
         </p>
 
         {/* Call to Action Buttons */}
-        <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4 w-full">
+        <div className="anim-hero-buttons mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4 w-full">
           <Link
             to="/daftar"
             className="group inline-flex items-center gap-2 bg-[#c6f24d] hover:bg-[#b4e63f] active:scale-95 text-[#111710] font-bold text-sm sm:text-base px-8 py-3.5 rounded-full shadow-xl shadow-[#c6f24d]/25 transition-all duration-200 transform hover:scale-105"
@@ -72,7 +72,7 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* Bottom Floating Information Bar */}
-      <div className="relative z-10 w-[97%] sm:w-[95%] max-w-[1380px] mx-auto px-3 sm:px-4 pb-6 sm:pb-8 flex items-end justify-between">
+      <div className="anim-hero-badge relative z-10 w-[97%] sm:w-[95%] max-w-[1380px] mx-auto px-3 sm:px-4 pb-6 sm:pb-8 flex items-end justify-between">
         {/* Bottom Left: User Avatars & 12K+ USERS Badge */}
         <div className="inline-flex items-center gap-3 bg-black/60 hover:bg-black/75 backdrop-blur-md px-3.5 sm:px-4 py-2 rounded-full border border-white/15 shadow-xl transition">
           {/* Overlapping Avatar Rings */}

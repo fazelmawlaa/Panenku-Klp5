@@ -4,15 +4,23 @@ import { Link } from 'react-router-dom';
 import logoPanenku from '@/assets/logo_panenku.png';
 import consultationBg from '@/assets/consultation_bg.jpg';
 import marketplaceBg from '@/assets/marketplace_bg.jpg';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export const ServicesSection: React.FC = () => {
+  const { ref: headingRef, isVisible: headingVisible } = useScrollReveal();
+  const { ref: card1Ref, isVisible: card1Visible } = useScrollReveal({ threshold: 0.12 });
+  const { ref: card2Ref, isVisible: card2Visible } = useScrollReveal({ threshold: 0.12 });
+
   return (
     <section
       id="layanan"
       className="scroll-mt-28 pt-24 sm:pt-28 pb-20 md:pb-28 px-3 sm:px-6 lg:px-8 w-[97%] sm:w-[95%] max-w-[1380px] mx-auto"
     >
       {/* Section Header */}
-      <div className="mb-10 sm:mb-14">
+      <div
+        ref={headingRef}
+        className={`mb-10 sm:mb-14 reveal ${headingVisible ? 'reveal-visible' : ''}`}
+      >
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.6rem] font-bold text-neutral-900 tracking-tight leading-[1.16] max-w-5xl">
           <span className="font-extrabold text-neutral-950">
             Semua Kebutuhan Pertanian,&nbsp;
@@ -32,8 +40,11 @@ export const ServicesSection: React.FC = () => {
 
       {/* Two High-Impact Feature Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-10">
-        {/* Card 1: Konsultasi Bersama Ahli Pertanian */}
-        <div className="group relative rounded-[2.5rem] overflow-hidden aspect-[4/4.5] sm:aspect-[4/4.2] shadow-2xl flex flex-col justify-between p-6 sm:p-8 border border-neutral-300/60 transition-all duration-500 hover:shadow-neutral-500/20">
+        {/* Card 1: Konsultasi */}
+        <div
+          ref={card1Ref}
+          className={`reveal-left ${card1Visible ? 'reveal-visible' : ''} group relative rounded-[2.5rem] overflow-hidden aspect-[4/4.5] sm:aspect-[4/4.2] shadow-2xl flex flex-col justify-between p-6 sm:p-8 border border-neutral-300/60 transition-all duration-500 hover:shadow-neutral-500/20`}
+        >
           {/* Card Background Image with hover zoom */}
           <div className="absolute inset-0 z-0">
             <img
@@ -83,8 +94,11 @@ export const ServicesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Card 2: Marketplace Produk Pertanian */}
-        <div className="group relative rounded-[2.5rem] overflow-hidden aspect-[4/4.5] sm:aspect-[4/4.2] shadow-2xl flex flex-col justify-between p-6 sm:p-8 border border-neutral-300/60 transition-all duration-500 hover:shadow-neutral-500/20">
+        {/* Card 2: Marketplace */}
+        <div
+          ref={card2Ref}
+          className={`reveal-right delay-150 ${card2Visible ? 'reveal-visible' : ''} group relative rounded-[2.5rem] overflow-hidden aspect-[4/4.5] sm:aspect-[4/4.2] shadow-2xl flex flex-col justify-between p-6 sm:p-8 border border-neutral-300/60 transition-all duration-500 hover:shadow-neutral-500/20`}
+        >
           {/* Card Background Image with hover zoom */}
           <div className="absolute inset-0 z-0">
             <img

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sprout, RefreshCw, Users, ShieldCheck, Sparkles } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export const EcosystemSection: React.FC = () => {
   const highlights = [
@@ -36,6 +37,12 @@ export const EcosystemSection: React.FC = () => {
     { value: '34+', label: 'Kota & Daerah Terjangkau' },
   ];
 
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { ref: gridRef, isVisible: gridVisible } = useScrollReveal({ threshold: 0.1 });
+  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal({ threshold: 0.2 });
+
+  const staggerDelays = ['delay-100', 'delay-200', 'delay-300', 'delay-400'];
+
   return (
     <section id="tentang-kami" className="py-20 md:py-28 bg-[#141a15] text-white relative overflow-hidden">
       {/* Decorative Glow */}
@@ -43,7 +50,10 @@ export const EcosystemSection: React.FC = () => {
 
       <div className="w-[97%] sm:w-[95%] max-w-[1380px] mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+        <div
+          ref={headerRef}
+          className={`text-center max-w-3xl mx-auto mb-16 md:mb-20 reveal ${headerVisible ? 'reveal-visible' : ''}`}
+        >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 text-[#c6f24d] text-xs font-semibold uppercase tracking-wider mb-4">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Ekosistem Pertanian Pintar</span>
@@ -58,14 +68,14 @@ export const EcosystemSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        {/* Feature Grid — each card fades up with stagger */}
+        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {highlights.map((item, idx) => {
             const Icon = item.icon;
             return (
               <div
                 key={idx}
-                className="bg-[#1b231c]/70 hover:bg-[#1f2820] border border-white/10 hover:border-white/20 rounded-3xl p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 shadow-xl flex flex-col justify-between"
+                className={`reveal ${staggerDelays[idx]} ${gridVisible ? 'reveal-visible' : ''} bg-[#1b231c]/70 hover:bg-[#1f2820] border border-white/10 hover:border-white/20 rounded-3xl p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 shadow-xl flex flex-col justify-between`}
               >
                 <div>
                   <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border ${item.accent} mb-5`}>
@@ -84,9 +94,15 @@ export const EcosystemSection: React.FC = () => {
         </div>
 
         {/* Stats Row */}
-        <div className="bg-[#19211a] border border-white/10 rounded-3xl p-8 sm:p-10 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+        <div
+          ref={statsRef}
+          className={`reveal-scale ${statsVisible ? 'reveal-visible' : ''} bg-[#19211a] border border-white/10 rounded-3xl p-8 sm:p-10 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center`}
+        >
           {stats.map((stat, i) => (
-            <div key={i} className="flex flex-col items-center">
+            <div
+              key={i}
+              className={`reveal ${staggerDelays[i]} ${statsVisible ? 'reveal-visible' : ''} flex flex-col items-center`}
+            >
               <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#c6f24d] tracking-tight">
                 {stat.value}
               </span>

@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export const CtaSection: React.FC = () => {
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.2 });
   return (
     <section className="py-16 md:py-20 px-3 sm:px-6 lg:px-8 w-[97%] sm:w-[95%] max-w-[1380px] mx-auto">
-      <div className="relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#101912] via-[#142317] to-[#0c130d] text-white p-8 sm:p-14 lg:p-16 border border-white/10 shadow-2xl">
+      <div
+        ref={ref}
+        className={`reveal-scale ${isVisible ? 'reveal-visible' : ''} relative rounded-[2.5rem] overflow-hidden bg-gradient-to-br from-[#101912] via-[#142317] to-[#0c130d] text-white p-8 sm:p-14 lg:p-16 border border-white/10 shadow-2xl`}
+      >
         {/* Decorative Ambient Radial Gradient */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#c6f24d]/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
