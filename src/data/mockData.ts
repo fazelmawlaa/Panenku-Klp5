@@ -1,3 +1,4 @@
+import type { Product, User, Mentor, BuyerStats, BuyerTransaction } from '@/types';
 import type { Product, User, Mentor, ChatSession, BuyerStats, BuyerTransaction } from '@/types';
 
 export const mockProducts: Product[] = [
@@ -290,3 +291,51 @@ export const mockBuyerTransactions: BuyerTransaction[] = [
     type: 'produk',
   },
 ];
+
+export const mockBuyerStats: BuyerStats = {
+  pesananAktif: 7,
+  pesananSedangPanen: 1,
+  penghematan: 80750,
+  petaniFavorit: 0,
+  totalTransaksi: 13,
+};
+
+export const mockBuyerTransactions: BuyerTransaction[] = [
+  {
+    id: '1',
+    code: 'SES-957-5075',
+    title: 'Konsultasi: andrian',
+    date: '16 Jul 2026 10:00',
+    amount: 75000,
+    status: 'PAID',
+    type: 'konsultasi',
+  },
+  {
+    id: '2',
+    code: 'SES-325-3967',
+    title: 'Konsultasi: Muhammad Fazel Mawla',
+    date: '14 Jul 2026 10:00',
+    amount: 75000,
+    status: 'PAID',
+    type: 'konsultasi',
+  },
+  {
+    id: '3',
+    code: 'ORD-5127',
+    title: 'Sekam Padi',
+    date: '14 Jul 2026',
+    amount: 19500,
+    status: 'SELESAI',
+    type: 'produk',
+  },
+  {
+    id: '4',
+    code: 'ORD-11613',
+    title: 'Sekam Padi',
+    date: '14 Jul 2026',
+    amount: 19500,
+    status: 'SELESAI',
+    type: 'produk',
+  },
+];
+
