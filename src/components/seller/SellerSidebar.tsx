@@ -33,6 +33,8 @@ export const SellerSidebar: React.FC<SellerSidebarProps> = ({ onCloseMobile }) =
     location.pathname.startsWith('/penjual/marketplace') ||
     location.pathname.startsWith('/penjual/produk');
 
+  const isLimbahActive = location.pathname.startsWith('/penjual/limbah');
+
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all duration-200 ${
       isActive
@@ -115,7 +117,13 @@ export const SellerSidebar: React.FC<SellerSidebarProps> = ({ onCloseMobile }) =
             <NavLink
               to="/penjual/limbah"
               onClick={onCloseMobile}
-              className={navLinkClass}
+              className={() =>
+                `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all duration-200 ${
+                  isLimbahActive
+                    ? 'bg-[#006738] text-white shadow-xs font-bold'
+                    : 'text-[#4b5563] hover:text-[#111827] hover:bg-[#f0f4f0]'
+                }`
+              }
             >
               <Recycle className="w-4 h-4 shrink-0 stroke-[2]" />
               <span>LIMBAH PERTANIAN</span>
