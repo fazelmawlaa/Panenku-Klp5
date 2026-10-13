@@ -4,6 +4,7 @@ import LoginPage from '@/pages/LoginPage';
 import RegisterPage from '@/pages/RegisterPage';
 import CartPage from '@/pages/CartPage';
 import CheckoutPage from '@/pages/CheckoutPage';
+import SellerOrdersPage from '@/pages/SellerOrdersPage';
 
 // Placeholder pages
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -75,7 +76,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/penjual/pesanan',
-    element: <PlaceholderPage title="Kelola Pesanan" />,
+    element: <SellerOrdersPage />,
   },
   {
     path: '/penjual/analitik',
