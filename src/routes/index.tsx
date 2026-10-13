@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import { LandingPage } from '@/pages/LandingPage';
 
 // Placeholder pages
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -14,7 +15,7 @@ export const router = createBrowserRouter([
   // Public routes
   {
     path: '/',
-    element: <PlaceholderPage title="Landing Page - PANENKU" />,
+    element: <LandingPage />,
   },
   {
     path: '/masuk',
