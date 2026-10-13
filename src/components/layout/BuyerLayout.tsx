@@ -6,7 +6,7 @@ export const BuyerLayout: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#f8f9fa] flex flex-col font-sans antialiased text-gray-800">
       <Navbar />
-      <main className="flex-1 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <main className="flex-1 w-full max-w-[96%] 2xl:max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-6 py-6">
         <Outlet />
       </main>
     </div>

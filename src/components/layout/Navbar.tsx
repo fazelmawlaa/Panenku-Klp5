@@ -11,7 +11,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full bg-white border-b border-gray-100 shadow-2xs">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+      <div className="w-full max-w-[96%] 2xl:max-w-[1600px] mx-auto px-2 sm:px-4 lg:px-6 h-18 flex items-center justify-between">
         {/* Brand / Logo */}
         <Link to="/pembeli/marketplace" className="flex items-center group py-2">
           <img

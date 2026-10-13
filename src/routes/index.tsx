@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { BuyerLayout } from '@/components/layout/BuyerLayout';
 import { MarketplacePage } from '@/features/marketplace/pages/MarketplacePage';
+import { BuyerDashboardPage } from '@/features/dashboard/pages/BuyerDashboardPage';
 
 // Placeholder pages
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -13,10 +14,10 @@ const PlaceholderPage = ({ title }: { title: string }) => (
 );
 
 export const router = createBrowserRouter([
-  // Default redirect to Marketplace for instant preview
+  // Default redirect to Dashboard / Marketplace
   {
     path: '/',
-    element: <Navigate to="/pembeli/marketplace" replace />,
+    element: <Navigate to="/pembeli/dasbor" replace />,
   },
   {
     path: '/masuk',
@@ -33,12 +34,12 @@ export const router = createBrowserRouter([
     element: <BuyerLayout />,
     children: [
       {
-        path: 'marketplace',
-        element: <MarketplacePage />,
+        path: 'dasbor',
+        element: <BuyerDashboardPage />,
       },
       {
-        path: 'dasbor',
-        element: <PlaceholderPage title="Dasbor Pembeli" />,
+        path: 'marketplace',
+        element: <MarketplacePage />,
       },
       {
         path: 'produk/:id',
