@@ -16,10 +16,10 @@ const PlaceholderPage = ({ title }: { title: string }) => (
 );
 
 export const router = createBrowserRouter([
-  // Default redirect to Marketplace
+  // Default redirect ke fitur utama branch ini (Konsultasi)
   {
     path: '/',
-    element: <Navigate to="/pembeli/marketplace" replace />,
+    element: <Navigate to="/pembeli/konsultasi" replace />,
   },
   {
     path: '/masuk',
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '',
-        element: <Navigate to="marketplace" replace />,
+        element: <Navigate to="konsultasi" replace />,
       },
       {
         path: 'dasbor',
