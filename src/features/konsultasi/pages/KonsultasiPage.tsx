@@ -90,37 +90,19 @@ export function KonsultasiPage() {
   return (
     <div className="w-full space-y-6">
       {/* Hero Banner */}
-      <div className="relative rounded-2xl overflow-hidden shadow-xs" style={{ height: "220px" }}>
+      <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-xs w-full bg-[#1b4332]">
         <img
           src="/images/konsultasi-hero.jpg"
-          alt="Konsultasi Petani"
-          className="w-full h-full object-cover object-top"
-          onError={(e) => { e.currentTarget.style.display = "none"; }}
+          alt="Tanya Petani Mentor di PANENKU"
+          className="w-full h-auto object-cover object-center max-h-[300px]"
         />
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
-        {/* Hero text */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-white text-center drop-shadow-lg">
-            Tanya Petani Mentor di{" "}
-            <span className="text-yellow-400">PANENKU</span>
-          </h1>
-        </div>
-        {/* Fallback gradient if no image */}
-        <div
-          className="absolute inset-0 -z-10 bg-gradient-to-br from-[#1b4332] via-[#2d6a4f] to-emerald-600 flex items-center justify-center"
-        >
-          <h1 className="text-3xl md:text-4xl font-bold text-white text-center">
-            Tanya Petani Mentor di{" "}
-            <span className="text-yellow-400">PANENKU</span>
-          </h1>
-        </div>
+        <h1 className="sr-only">Tanya Petani Mentor di PANENKU</h1>
       </div>
 
       {/* Main Content */}
-      <div>
+      <div className="space-y-6">
         {/* Search Bar */}
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-3">
           <div className="flex-1 relative">
             <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
@@ -133,30 +115,30 @@ export function KonsultasiPage() {
           </div>
           <button
             onClick={() => {}}
-            className="px-5 py-2.5 bg-green-700 hover:bg-green-800 text-white text-sm font-medium rounded-xl transition-colors"
+            className="px-6 py-2.5 bg-[#baef53] hover:bg-[#a8e53d] text-[#1b4332] text-sm font-semibold rounded-xl transition-colors shadow-2xs"
           >
             Cari
           </button>
-          {sessions.length > 0 && (
-            <button
-              onClick={() => handleOpenExistingChat(sessions[0].id)}
-              className="px-5 py-2.5 border border-green-700 text-green-700 hover:bg-green-50 text-sm font-medium rounded-xl transition-colors flex items-center gap-2"
-            >
-              💬 Chat Sesi
-              <span className="bg-green-700 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+          <button
+            onClick={() => sessions.length > 0 && handleOpenExistingChat(sessions[0].id)}
+            className="px-5 py-2.5 bg-[#247e3b] hover:bg-[#1b632e] text-white text-sm font-medium rounded-xl transition-colors flex items-center gap-2 shadow-2xs"
+          >
+            💬 Chat Sesi
+            {sessions.length > 0 && (
+              <span className="bg-white text-[#247e3b] text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
                 {sessions.length}
               </span>
-            </button>
-          )}
+            )}
+          </button>
         </div>
 
         {/* Category Filter Pills */}
-        <div className="flex items-center gap-2 flex-wrap mb-6">
+        <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => setSelectedCategory("Semua")}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
+            className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
               selectedCategory === "Semua"
-                ? "bg-green-700 text-white"
+                ? "bg-[#247e3b] text-white shadow-2xs"
                 : "bg-white border border-gray-200 text-gray-600 hover:border-green-400"
             }`}
           >
@@ -166,9 +148,9 @@ export function KonsultasiPage() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
+              className={`px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${
                 selectedCategory === cat
-                  ? "bg-green-700 text-white"
+                  ? "bg-[#247e3b] text-white shadow-2xs"
                   : "bg-white border border-gray-200 text-gray-600 hover:border-green-400"
               }`}
             >
