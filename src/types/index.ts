@@ -49,11 +49,48 @@ export interface User {
   role: 'pembeli' | 'penjual';
 }
 
+export type MentorCategory = 'Budidaya Padi & Pangan' | 'Hortikultura' | 'Perkebunan' | 'Peternakan' | 'Teknologi Pertanian';
+
+export type MentorStatus = 'aktif' | 'sibuk' | 'offline';
+
 export interface Mentor {
   id: string;
   name: string;
   expertise: string;
+  specializations: string[];
   experience: string;
+  experienceYears: number;
   rate: number;
   image: string;
+  category: MentorCategory;
+  rating: number;
+  totalSessions: number;
+  status: MentorStatus;
+  bio?: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  sessionId: string;
+  senderId: string;
+  senderName: string;
+  senderRole: 'pembeli' | 'mentor';
+  content: string;
+  timestamp: string;
+  isRead: boolean;
+}
+
+export interface ChatSession {
+  id: string;
+  mentorId: string;
+  mentorName: string;
+  mentorImage: string;
+  buyerId: string;
+  buyerName: string;
+  topic: string;
+  status: 'aktif' | 'selesai' | 'menunggu';
+  createdAt: string;
+  lastMessage?: ChatMessage;
+  messages: ChatMessage[];
+  isPaid: boolean;
 }

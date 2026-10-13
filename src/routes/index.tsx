@@ -1,4 +1,5 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { KonsultasiPage } from '@/features/konsultasi/pages/KonsultasiPage';
 
 // Placeholder pages
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -14,7 +15,7 @@ export const router = createBrowserRouter([
   // Public routes
   {
     path: '/',
-    element: <PlaceholderPage title="Landing Page - PANENKU" />,
+    element: <Navigate to="/pembeli/konsultasi" replace />,
   },
   {
     path: '/masuk',
@@ -40,7 +41,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/pembeli/konsultasi',
-    element: <PlaceholderPage title="Konsultasi Mentor" />,
+    element: <KonsultasiPage />,
   },
   {
     path: '/pembeli/keranjang',
