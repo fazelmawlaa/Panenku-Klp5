@@ -13,9 +13,11 @@ import { MarketplacePage } from '@/features/marketplace/pages/MarketplacePage';
 // Seller Layout & Pages
 import { SellerLayout } from '@/components/seller/SellerLayout';
 import SellerDashboardPage from '@/pages/seller/SellerDashboardPage';
-import SellerProductsPage from '@/pages/seller/SellerProductsPage';
-import SellerOrdersPage from '@/pages/seller/SellerOrdersPage';
+import SellerMarketplacePage from '@/pages/seller/SellerMarketplacePage';
+import AddProductPage from '@/pages/seller/AddProductPage';
 import SellerWastePage from '@/pages/seller/SellerWastePage';
+import AddWastePage from '@/pages/seller/AddWastePage';
+import SellerOrdersPage from '@/pages/seller/SellerOrdersPage';
 import SellerAnalyticsPage from '@/pages/seller/SellerAnalyticsPage';
 import SellerProfilePage from '@/pages/seller/SellerProfilePage';
 import SellerConsultationPage from '@/pages/seller/SellerConsultationPage';
@@ -91,20 +93,24 @@ export const router = createBrowserRouter([
         element: <SellerDashboardPage />,
       },
       {
+        path: 'marketplace',
+        element: <SellerMarketplacePage />,
+      },
+      {
         path: 'produk',
-        element: <SellerProductsPage />,
+        element: <SellerMarketplacePage />,
       },
       {
         path: 'produk/tambah',
-        element: <PlaceholderPage title="Tambah Produk" />,
-      },
-      {
-        path: 'marketplace',
-        element: <SellerProductsPage />,
+        element: <AddProductPage />,
       },
       {
         path: 'limbah',
         element: <SellerWastePage />,
+      },
+      {
+        path: 'limbah/tambah',
+        element: <AddWastePage />,
       },
       {
         path: 'pesanan',
@@ -121,6 +127,10 @@ export const router = createBrowserRouter([
       {
         path: 'konsultasi',
         element: <SellerConsultationPage />,
+      },
+      {
+        path: 'kalender',
+        element: <SellerDashboardPage />,
       },
     ],
   },
