@@ -61,3 +61,24 @@ export interface Mentor {
   rate: number;
   image: string;
 }
+
+export interface BuyerStats {
+  pesananAktif: number;
+  pesananSedangPanen: number;
+  penghematan: number;
+  petaniFavorit: number;
+  totalTransaksi: number;
+}
+
+export type TransactionStatus = 'PAID' | 'SELESAI' | 'PENDING' | 'BATAL';
+
+export interface BuyerTransaction {
+  id: string;
+  code: string;
+  title: string;
+  date: string;
+  amount: number;
+  status: TransactionStatus;
+  type: 'konsultasi' | 'produk';
+}
+
