@@ -2,9 +2,6 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import LandingPage from '@/pages/LandingPage';
 import LoginPage from '@/pages/LoginPage';
 import RegisterPage from '@/pages/RegisterPage';
-import { BuyerLayout } from '@/components/layout/BuyerLayout';
-import { BuyerDashboardPage } from '@/features/dashboard/pages/BuyerDashboardPage';
-import { MarketplacePage } from '@/features/marketplace/pages/MarketplacePage';
 import CartPage from '@/pages/CartPage';
 import CheckoutPage from '@/pages/CheckoutPage';
 

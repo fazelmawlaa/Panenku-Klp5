@@ -1,20 +1,5 @@
 import React from 'react';
 import { ShoppingBag, Sparkles } from 'lucide-react';
-
-export const DashboardHero: React.FC = () => {
-  return (
-    <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#143926] via-[#1b4332] to-[#25573e] text-white p-7 sm:p-9 shadow-sm mb-6">
-      {/* Subtle organic pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-10 bg-repeat pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-          backgroundSize: '24px 24px',
-        }}
-      />
-      
-      {/* Decorative gradient glow */}
-      <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full bg-emerald-400/10 blur-3xl pointer-events-none" />
 import bgDashboard from '@/assets/bg_dashboard.jpg';
 
 export const DashboardHero: React.FC = () => {
