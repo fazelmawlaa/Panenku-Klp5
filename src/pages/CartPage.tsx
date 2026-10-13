@@ -140,13 +140,8 @@ export const CartPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f8f9fa] text-neutral-900 font-sans flex flex-col justify-between">
-      {/* App Navbar */}
-      <AppNavbar cartCount={items.length} />
-
-      {/* Main Content Area */}
-      <main className="flex-1 w-full max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 pb-40">
-        {/* Title */}
+    <div className="w-full pb-32">
+      {/* Title */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-3xl sm:text-4xl font-black text-neutral-900 tracking-tight">
@@ -312,7 +307,6 @@ export const CartPage: React.FC = () => {
             })}
           </div>
         )}
-      </main>
 
       {/* 
         STICKY FULL-WIDTH BOTTOM BAR ("memanjang kesamping dibagian bawahnya dan itu tetap saat di scroll kebawah atau ke atas")

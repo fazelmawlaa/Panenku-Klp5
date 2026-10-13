@@ -12,8 +12,8 @@ export const AppNavbar: React.FC<AppNavbarProps> = ({ cartCount = 1 }) => {
   const location = useLocation();
   const currentUser = authService.getCurrentUser() || {
     id: '1',
-    name: 'fazel',
-    email: 'fazel@example.com',
+    name: 'budi pembeli',
+    email: 'budi@example.com',
     role: 'pembeli' as const,
   };
 
