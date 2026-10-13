@@ -47,6 +47,8 @@ export interface User {
   name: string;
   email: string;
   role: 'pembeli' | 'penjual';
+  phone?: string;
+  location?: string;
 }
 
 export interface Mentor {

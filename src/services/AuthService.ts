@@ -9,6 +9,8 @@ export interface RegisterPayload {
   email: string;
   password: string;
   role: 'pembeli' | 'penjual';
+  phone?: string;
+  location?: string;
 }
 
 export interface AuthResult {
@@ -97,6 +99,8 @@ export class AuthService {
       name: trimmedName,
       email: trimmedEmail,
       role: payload.role,
+      phone: payload.phone?.trim() || undefined,
+      location: payload.location?.trim() || undefined,
     };
 
     const updatedUsers = [...users, newUser];

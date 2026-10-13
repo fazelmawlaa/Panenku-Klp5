@@ -1,6 +1,20 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, User as UserIcon, Mail, Lock, Eye, EyeOff, AlertCircle, ShoppingCart, Store, CheckCircle2 } from 'lucide-react';
+import {
+  ArrowLeft,
+  User as UserIcon,
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  AlertCircle,
+  ShoppingCart,
+  Store,
+  CheckCircle2,
+  Sparkles,
+  Phone,
+  MapPin,
+} from 'lucide-react';
 import logoPanenku from '@/assets/logo_panenku.png';
 import farmingBg from '@/assets/farming_bg.png';
 import { authService } from '@/services/AuthService';
@@ -11,6 +25,8 @@ export const RegisterPage: React.FC = () => {
   const [role, setRole] = useState<'pembeli' | 'penjual'>('pembeli');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [location, setLocation] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -48,6 +64,8 @@ export const RegisterPage: React.FC = () => {
         email,
         password,
         role,
+        phone,
+        location,
       });
 
       setIsLoading(false);
@@ -96,41 +114,51 @@ export const RegisterPage: React.FC = () => {
       {/* Main Container on top of background */}
       <main className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 my-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Text / Slogan from Reference */}
-          <div className="hidden lg:flex lg:col-span-6 flex-col text-white pr-4">
-            <h1 className="text-4xl xl:text-5xl font-black tracking-tight leading-[1.18] drop-shadow-md">
-              <span>Mulai Bertani &amp; Berdagang,&nbsp;</span>
-              <br />
-              <span>Bersama </span>
-              <span className="font-serif italic font-normal text-[#c6f24d]">
-                Ekosistem Panenku
+          {/* Left Text & Highlighted Benefits */}
+          <div className="hidden lg:flex lg:col-span-6 flex-col text-white pr-6 max-w-xl">
+            {/* Header Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#c6f24d]/15 text-[#c6f24d] border border-[#c6f24d]/30 text-[11px] font-bold uppercase tracking-wider mb-4 w-fit backdrop-blur-md shadow-sm">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Keuntungan Ekosistem Petani</span>
+            </div>
+
+            <h1 className="text-4xl xl:text-5xl font-black tracking-tight leading-[1.15] drop-shadow-md">
+              <span className="block font-black">Mulai Bertani &amp; Berdagang,</span>
+              <span className="block mt-1">
+                <span className="font-black">Bersama </span>
+                <span className="font-serif italic font-normal text-[#c6f24d]">
+                  Ekosistem Panenku
+                </span>
               </span>
             </h1>
-            <p className="mt-6 text-neutral-200 text-base xl:text-lg leading-relaxed max-w-lg font-normal drop-shadow">
+
+            <p className="mt-5 text-neutral-200/90 text-sm xl:text-base leading-relaxed font-normal drop-shadow">
               Daftar sekarang untuk membuka akses langsung ke ribuan pembeli,
               jaringan mentor ahli agronomi, dan pasar limbah organik sirkular.
             </p>
 
             {/* Quick Benefits Checklist */}
             <div className="mt-8 space-y-3 max-w-md">
-              <div className="flex items-center gap-3 text-sm text-neutral-200">
+              <div className="flex items-center gap-3 text-sm text-neutral-100 bg-black/40 backdrop-blur-md border border-white/15 hover:border-[#c6f24d]/40 rounded-2xl px-4 py-3 transition-all shadow-md">
                 <CheckCircle2 className="w-5 h-5 text-[#c6f24d] shrink-0" />
-                <span>Tanpa biaya pendaftaran &amp; tanpa biaya langganan</span>
+                <span className="font-medium">Tanpa biaya pendaftaran &amp; tanpa biaya langganan</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-neutral-200">
+
+              <div className="flex items-center gap-3 text-sm text-neutral-100 bg-black/40 backdrop-blur-md border border-white/15 hover:border-[#c6f24d]/40 rounded-2xl px-4 py-3 transition-all shadow-md">
                 <CheckCircle2 className="w-5 h-5 text-[#c6f24d] shrink-0" />
-                <span>Sistem pembayaran aman escrow terintegrasi</span>
+                <span className="font-medium">Sistem pembayaran aman escrow terintegrasi</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-neutral-200">
+
+              <div className="flex items-center gap-3 text-sm text-neutral-100 bg-black/40 backdrop-blur-md border border-white/15 hover:border-[#c6f24d]/40 rounded-2xl px-4 py-3 transition-all shadow-md">
                 <CheckCircle2 className="w-5 h-5 text-[#c6f24d] shrink-0" />
-                <span>Konsultasi gratis budidaya dan solusi hama</span>
+                <span className="font-medium">Konsultasi gratis budidaya dan solusi hama</span>
               </div>
             </div>
           </div>
 
           {/* Right: Register Card Container */}
           <div className="lg:col-span-6 flex justify-center lg:justify-end">
-            <div className="w-full max-w-[480px] bg-white rounded-[2.5rem] p-7 sm:p-9 shadow-2xl border border-neutral-100 flex flex-col">
+            <div className="w-full max-w-[500px] bg-white rounded-[2.5rem] p-7 sm:p-9 shadow-2xl border border-neutral-100 flex flex-col">
               {/* Logo */}
               <div className="flex justify-center mb-3">
                 <img
@@ -176,11 +204,10 @@ export const RegisterPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setRole('pembeli')}
-                      className={`p-3 rounded-2xl border flex flex-col items-center gap-1.5 transition-all text-xs font-bold cursor-pointer ${
-                        role === 'pembeli'
-                          ? 'border-[#007a3d] bg-emerald-50/70 text-[#007a3d] ring-2 ring-[#007a3d]/20 shadow-sm'
-                          : 'border-neutral-200 bg-neutral-50 hover:bg-neutral-100 text-neutral-600'
-                      }`}
+                      className={`p-3 rounded-2xl border flex flex-col items-center gap-1.5 transition-all text-xs font-bold cursor-pointer ${role === 'pembeli'
+                        ? 'border-[#007a3d] bg-emerald-50/70 text-[#007a3d] ring-2 ring-[#007a3d]/20 shadow-sm'
+                        : 'border-neutral-200 bg-neutral-50 hover:bg-neutral-100 text-neutral-600'
+                        }`}
                     >
                       <ShoppingCart className="w-4 h-4" />
                       <span>Pembeli / Konsumen</span>
@@ -188,11 +215,10 @@ export const RegisterPage: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setRole('penjual')}
-                      className={`p-3 rounded-2xl border flex flex-col items-center gap-1.5 transition-all text-xs font-bold cursor-pointer ${
-                        role === 'penjual'
-                          ? 'border-[#007a3d] bg-emerald-50/70 text-[#007a3d] ring-2 ring-[#007a3d]/20 shadow-sm'
-                          : 'border-neutral-200 bg-neutral-50 hover:bg-neutral-100 text-neutral-600'
-                      }`}
+                      className={`p-3 rounded-2xl border flex flex-col items-center gap-1.5 transition-all text-xs font-bold cursor-pointer ${role === 'penjual'
+                        ? 'border-[#007a3d] bg-emerald-50/70 text-[#007a3d] ring-2 ring-[#007a3d]/20 shadow-sm'
+                        : 'border-neutral-200 bg-neutral-50 hover:bg-neutral-100 text-neutral-600'
+                        }`}
                     >
                       <Store className="w-4 h-4" />
                       <span>Penjual / Petani</span>
@@ -215,7 +241,7 @@ export const RegisterPage: React.FC = () => {
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Tulis Nama Lengkap Anda"
                       required
-                      className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 text-sm rounded-2xl py-2.5 sm:py-3 pl-10 pr-4 transition-all outline-none"
+                      className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 placeholder:text-neutral-400 text-sm rounded-2xl py-2.5 sm:py-3 pl-10 pr-4 transition-all outline-none"
                     />
                   </div>
                 </div>
@@ -235,8 +261,47 @@ export const RegisterPage: React.FC = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Tulis Email Anda"
                       required
-                      className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 text-sm rounded-2xl py-2.5 sm:py-3 pl-10 pr-4 transition-all outline-none"
+                      className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 placeholder:text-neutral-400 text-sm rounded-2xl py-2.5 sm:py-3 pl-10 pr-4 transition-all outline-none"
                     />
+                  </div>
+                </div>
+
+                {/* Nomor HP & Lokasi */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-[11px] font-bold text-neutral-600 uppercase tracking-wider mb-1">
+                      NOMOR HP / WA
+                    </label>
+                    <div className="relative">
+                      <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-neutral-400">
+                        <Phone className="w-4 h-4" />
+                      </span>
+                      <input
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="Contoh: 08123456789"
+                        className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 placeholder:text-neutral-400 text-sm rounded-2xl py-2.5 sm:py-3 pl-10 pr-3 transition-all outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold text-neutral-600 uppercase tracking-wider mb-1">
+                      LOKASI / KOTA ASAL
+                    </label>
+                    <div className="relative">
+                      <span className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-neutral-400">
+                        <MapPin className="w-4 h-4" />
+                      </span>
+                      <input
+                        type="text"
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
+                        placeholder="Contoh: Banda Aceh"
+                        className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 placeholder:text-neutral-400 text-sm rounded-2xl py-2.5 sm:py-3 pl-10 pr-3 transition-all outline-none"
+                      />
+                    </div>
                   </div>
                 </div>
 
@@ -256,7 +321,7 @@ export const RegisterPage: React.FC = () => {
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Min. 6 karakter"
                         required
-                        className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 text-sm rounded-2xl py-2.5 sm:py-3 pl-10 pr-9 transition-all outline-none"
+                        className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 placeholder:text-neutral-400 text-sm rounded-2xl py-2.5 sm:py-3 pl-10 pr-9 transition-all outline-none"
                       />
                       <button
                         type="button"
@@ -287,7 +352,7 @@ export const RegisterPage: React.FC = () => {
                         onChange={(e) => setConfirmPassword(e.target.value)}
                         placeholder="Ulangi sandi"
                         required
-                        className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 text-sm rounded-2xl py-2.5 sm:py-3 pl-10 pr-4 transition-all outline-none"
+                        className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 placeholder:text-neutral-400 text-sm rounded-2xl py-2.5 sm:py-3 pl-10 pr-4 transition-all outline-none"
                       />
                     </div>
                   </div>

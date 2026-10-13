@@ -47,12 +47,6 @@ export const LoginPage: React.FC = () => {
     }, 400);
   };
 
-  const handleQuickDemo = (demoEmail: string) => {
-    setEmail(demoEmail);
-    setPassword('password123');
-    setError(null);
-  };
-
   return (
     <div className="relative min-h-screen w-full flex flex-col justify-between overflow-x-hidden">
       {/* Full-screen Background Image with Cinematic Overlay */}
@@ -80,43 +74,21 @@ export const LoginPage: React.FC = () => {
       {/* Main Container on top of background */}
       <main className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 my-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Text / Slogan from Reference */}
-          <div className="hidden lg:flex lg:col-span-6 flex-col text-white pr-4">
-            <h1 className="text-4xl xl:text-5xl font-black tracking-tight leading-[1.18] drop-shadow-md">
-              <span>Belajar, Bertani, Panen,&nbsp;</span>
-              <br />
-              <span>dan </span>
-              <span className="font-serif italic font-normal text-[#c6f24d]">
-                Berkembang Bersama
+          {/* Left Text / Slogan matching Reference Mockup */}
+          <div className="hidden lg:flex lg:col-span-6 flex-col text-white pr-6 max-w-xl">
+            <h1 className="text-4xl xl:text-5xl 2xl:text-[3.5rem] font-black tracking-tight leading-[1.15] drop-shadow-lg">
+              <span className="block font-black">Belajar, Bertani, Panen,</span>
+              <span className="block mt-1">
+                <span className="font-black">dan </span>
+                <span className="font-serif italic font-normal text-[#c6f24d]">
+                  Berkembang Bersama
+                </span>
               </span>
             </h1>
-            <p className="mt-6 text-neutral-200 text-base xl:text-lg leading-relaxed max-w-lg font-normal drop-shadow">
+            <p className="mt-6 text-neutral-200/90 text-base xl:text-lg leading-relaxed font-normal drop-shadow">
               Bergabunglah bersama ribuan petani mandiri dan pelaku usaha sukses
               dalam ekosistem digital PANENKU.
             </p>
-
-            {/* Quick Demo Credentials Box */}
-            <div className="mt-8 p-4 rounded-2xl bg-black/40 backdrop-blur-md border border-white/15 max-w-md">
-              <span className="text-[11px] font-bold text-[#c6f24d] uppercase tracking-wider block mb-2">
-                ⚡ Akun Demo Instan (Klik untuk Mengisi):
-              </span>
-              <div className="flex flex-wrap gap-2 text-xs">
-                <button
-                  type="button"
-                  onClick={() => handleQuickDemo('budi@example.com')}
-                  className="px-3 py-1.5 rounded-full bg-white/15 hover:bg-white/25 text-white transition cursor-pointer"
-                >
-                  👤 Pembeli (budi@example.com)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleQuickDemo('ani@example.com')}
-                  className="px-3 py-1.5 rounded-full bg-white/15 hover:bg-white/25 text-white transition cursor-pointer"
-                >
-                  🌾 Penjual (ani@example.com)
-                </button>
-              </div>
-            </div>
           </div>
 
           {/* Right: Login Card Container (matching reference) */}
@@ -167,7 +139,7 @@ export const LoginPage: React.FC = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Tulis Email Anda"
                       required
-                      className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 text-sm rounded-2xl py-3 pl-10 pr-4 transition-all outline-none"
+                      className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 placeholder:text-neutral-400 text-sm rounded-2xl py-3 pl-10 pr-4 transition-all outline-none"
                     />
                   </div>
                 </div>
@@ -187,7 +159,7 @@ export const LoginPage: React.FC = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Tulis Kata sandi Anda"
                       required
-                      className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 text-sm rounded-2xl py-3 pl-10 pr-11 transition-all outline-none"
+                      className="w-full bg-[#f8f9fa] border border-[#e5e7eb] focus:border-[#007a3d] focus:bg-white focus:ring-2 focus:ring-[#007a3d]/20 text-neutral-900 placeholder:text-neutral-400 text-sm rounded-2xl py-3 pl-10 pr-11 transition-all outline-none"
                     />
                     <button
                       type="button"
@@ -213,30 +185,6 @@ export const LoginPage: React.FC = () => {
                   {isLoading ? 'MEMPROSES...' : 'MASUK'}
                 </button>
               </form>
-
-              {/* Mobile Quick Demo Helper */}
-              <div className="lg:hidden mt-4 pt-3 border-t border-neutral-100 text-center">
-                <span className="text-[11px] text-neutral-400 block mb-1">
-                  Akun Uji Coba:
-                </span>
-                <div className="flex justify-center gap-2 text-[11px]">
-                  <button
-                    type="button"
-                    onClick={() => handleQuickDemo('budi@example.com')}
-                    className="text-[#007a3d] font-semibold underline"
-                  >
-                    Budi (Pembeli)
-                  </button>
-                  <span className="text-neutral-300">•</span>
-                  <button
-                    type="button"
-                    onClick={() => handleQuickDemo('ani@example.com')}
-                    className="text-[#007a3d] font-semibold underline"
-                  >
-                    Ani (Penjual)
-                  </button>
-                </div>
-              </div>
 
               {/* Footer Switch */}
               <div className="mt-6 text-center text-xs text-neutral-500 font-medium">
