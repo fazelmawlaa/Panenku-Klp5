@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { BuyerLayout } from '@/components/layout/BuyerLayout';
 import { MarketplacePage } from '@/features/marketplace/pages/MarketplacePage';
 import { BuyerDashboardPage } from '@/features/dashboard/pages/BuyerDashboardPage';
+import { ProductDetailPage } from '@/features/marketplace/pages/ProductDetailPage';
 
 // Placeholder pages
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'produk/:id',
-        element: <PlaceholderPage title="Detail Produk" />,
+        element: <ProductDetailPage />,
       },
       {
         path: 'konsultasi',
