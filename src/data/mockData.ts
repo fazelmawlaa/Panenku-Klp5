@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import type { Product, User, Mentor, ChatSession } from '@/types';
-=======
-import type { Product, User, Mentor, BuyerStats, BuyerTransaction } from '@/types';
->>>>>>> feat_detail-produk/13-10-2026
+import type { Product, User, Mentor, ChatSession, BuyerStats, BuyerTransaction } from '@/types';
 
 export const mockProducts: Product[] = [
   {
@@ -14,18 +10,11 @@ export const mockProducts: Product[] = [
     sellerName: 'Urfan Husain',
     pricePerUnit: 10000,
     unit: 'kg',
-<<<<<<< HEAD
-    stock: 50,
-    cultivation: 'Organik',
-    image: '/images/kopi-arabika.jpg',
-    description: 'Kopi Arabika asli Gayo dengan cita rasa khas dan aroma yang harum.',
-=======
     stock: 200,
     maxStock: 200,
     rating: 5,
     image: '/images/cabai-busuk.jpg',
-    description: 'Cabai sisa panen / sortiran yang cocok untuk bahan kompos dan pupuk organik.'
->>>>>>> feat_detail-produk/13-10-2026
+    description: 'Cabai sisa panen / sortiran yang cocok untuk bahan kompos dan pupuk organik.',
   },
   {
     id: '2',
@@ -36,19 +25,13 @@ export const mockProducts: Product[] = [
     sellerName: 'Urfan Husain',
     pricePerUnit: 20000,
     unit: 'kg',
-<<<<<<< HEAD
-    stock: 500,
-    image: '/images/sekam-padi.jpg',
-    description: 'Sekam padi berkualitas untuk media tanam dan pupuk organik.',
-=======
     stock: 1000,
     maxStock: 1000,
     harvestDate: '2026-07-31',
     rating: 5,
     cultivation: 'Organik',
     image: '/images/cabe-calang.jpg',
-    description: 'cabe terbaik se aceh'
->>>>>>> feat_detail-produk/13-10-2026
+    description: 'cabe terbaik se aceh',
   },
   {
     id: '3',
@@ -64,7 +47,7 @@ export const mockProducts: Product[] = [
     rating: 5,
     cultivation: 'Organik',
     image: '/images/kopi-arabika.jpg',
-    description: 'Kopi Arabika asli Gayo dengan aroma kuat dan cita rasa khas.'
+    description: 'Kopi Arabika asli Gayo dengan aroma kuat dan cita rasa khas.',
   },
   {
     id: '4',
@@ -79,7 +62,7 @@ export const mockProducts: Product[] = [
     maxStock: 200,
     rating: 5,
     image: '/images/sekam-padi.jpg',
-    description: 'Sekam padi kering berkualitas tinggi untuk campuran media tanam & pakan.'
+    description: 'Sekam padi kering berkualitas tinggi untuk campuran media tanam & pakan.',
   },
   {
     id: '5',
@@ -96,55 +79,8 @@ export const mockProducts: Product[] = [
     rating: 5,
     cultivation: 'Konvensional',
     image: '/images/bawang-merah.jpg',
-<<<<<<< HEAD
-    description: 'Bawang merah segar pre-order untuk panen bulan November.',
+    description: 'Bawang merah Brebes wangi dan renyah, siap panen November 2026.',
   },
-  {
-    id: '4',
-    name: 'Cabai Merah Keriting',
-    type: 'ready',
-    category: 'Sayuran',
-    origin: 'Garut',
-    sellerName: 'Petani Cabai',
-    pricePerUnit: 35000,
-    unit: 'kg',
-    stock: 30,
-    cultivation: 'Organik',
-    image: '/images/cabai-merah.jpg',
-    description: 'Cabai merah keriting segar dan pedas.',
-  },
-  {
-    id: '5',
-    name: 'Jerami Padi',
-    type: 'limbah',
-    category: 'Limbah Pertanian',
-    origin: 'Subang',
-    sellerName: 'Petani Padi Makmur',
-    pricePerUnit: 800,
-    unit: 'kg',
-    stock: 1000,
-    image: '/images/jerami-padi.jpg',
-    description: 'Jerami padi kering untuk pakan ternak.',
-  },
-  {
-    id: '6',
-    name: 'Tomat',
-    type: 'preorder',
-    category: 'Sayuran',
-    origin: 'Lembang',
-    sellerName: 'Petani Tomat Segar',
-    pricePerUnit: 12000,
-    unit: 'kg',
-    stock: 80,
-    harvestDate: '2026-11-20',
-    cultivation: 'Organik',
-    image: '/images/tomat.jpg',
-    description: 'Tomat organik segar pre-order.',
-  },
-=======
-    description: 'Bawang merah Brebes wangi dan renyah, siap panen November 2026.'
-  }
->>>>>>> feat_detail-produk/13-10-2026
 ];
 
 export const mockUsers: User[] = [
@@ -354,4 +290,3 @@ export const mockBuyerTransactions: BuyerTransaction[] = [
     type: 'produk',
   },
 ];
-
