@@ -1,9 +1,17 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import LandingPage from '@/pages/LandingPage';
 import LoginPage from '@/pages/LoginPage';
 import RegisterPage from '@/pages/RegisterPage';
+import { SellerLayout } from '@/components/seller/SellerLayout';
+import SellerDashboardPage from '@/pages/seller/SellerDashboardPage';
+import SellerProductsPage from '@/pages/seller/SellerProductsPage';
+import SellerOrdersPage from '@/pages/seller/SellerOrdersPage';
+import SellerWastePage from '@/pages/seller/SellerWastePage';
+import SellerAnalyticsPage from '@/pages/seller/SellerAnalyticsPage';
+import SellerProfilePage from '@/pages/seller/SellerProfilePage';
+import SellerConsultationPage from '@/pages/seller/SellerConsultationPage';
 
-// Placeholder pages
+// Placeholder pages for buyer
 const PlaceholderPage = ({ title }: { title: string }) => (
   <div className="flex items-center justify-center min-h-screen">
     <div className="text-center">
@@ -54,29 +62,47 @@ export const router = createBrowserRouter([
     element: <PlaceholderPage title="Checkout" />,
   },
 
-  // Penjual routes
+  // Penjual routes (Nested under SellerLayout)
   {
-    path: '/penjual/dasbor',
-    element: <PlaceholderPage title="Dasbor Penjual" />,
-  },
-  {
-    path: '/penjual/produk',
-    element: <PlaceholderPage title="Manajemen Produk" />,
-  },
-  {
-    path: '/penjual/produk/tambah',
-    element: <PlaceholderPage title="Tambah Produk" />,
-  },
-  {
-    path: '/penjual/limbah',
-    element: <PlaceholderPage title="Marketplace Limbah" />,
-  },
-  {
-    path: '/penjual/pesanan',
-    element: <PlaceholderPage title="Kelola Pesanan" />,
-  },
-  {
-    path: '/penjual/analitik',
-    element: <PlaceholderPage title="Analitik Pendapatan" />,
+    path: '/penjual',
+    element: <SellerLayout />,
+    children: [
+      {
+        index: true,
+        element: <Navigate to="/penjual/dasbor" replace />,
+      },
+      {
+        path: 'dasbor',
+        element: <SellerDashboardPage />,
+      },
+      {
+        path: 'produk',
+        element: <SellerProductsPage />,
+      },
+      {
+        path: 'marketplace',
+        element: <SellerProductsPage />,
+      },
+      {
+        path: 'limbah',
+        element: <SellerWastePage />,
+      },
+      {
+        path: 'pesanan',
+        element: <SellerOrdersPage />,
+      },
+      {
+        path: 'analitik',
+        element: <SellerAnalyticsPage />,
+      },
+      {
+        path: 'profil',
+        element: <SellerProfilePage />,
+      },
+      {
+        path: 'konsultasi',
+        element: <SellerConsultationPage />,
+      },
+    ],
   },
 ]);
