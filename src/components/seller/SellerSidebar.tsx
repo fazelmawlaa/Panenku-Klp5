@@ -1,17 +1,18 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import {
   LayoutDashboard,
-  UserCheck,
   MessageSquare,
   Store,
   Recycle,
   ClipboardList,
   BarChart3,
+  CalendarDays,
   LogOut,
   ChevronDown,
   X,
-  ExternalLink
+  ExternalLink,
+  UserCheck
 } from 'lucide-react';
 import logoPanenku from '@/assets/logo_panenku.png';
 
@@ -21,16 +22,21 @@ interface SellerSidebarProps {
 
 export const SellerSidebar: React.FC<SellerSidebarProps> = ({ onCloseMobile }) => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
-    // Navigate back to login or landing
     navigate('/masuk');
   };
+
+  // Helper to determine if marketplace menu is active (both marketplace & produk paths)
+  const isMarketplaceActive =
+    location.pathname.startsWith('/penjual/marketplace') ||
+    location.pathname.startsWith('/penjual/produk');
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all duration-200 ${
       isActive
-        ? 'bg-[#006738] text-white shadow-sm font-bold'
+        ? 'bg-[#006738] text-white shadow-xs font-bold'
         : 'text-[#4b5563] hover:text-[#111827] hover:bg-[#f0f4f0]'
     }`;
 
@@ -57,10 +63,10 @@ export const SellerSidebar: React.FC<SellerSidebarProps> = ({ onCloseMobile }) =
       </div>
 
       {/* Navigation Sections */}
-      <div className="flex-1 overflow-y-auto px-4 py-3 space-y-6 scrollbar-thin">
+      <div className="flex-1 overflow-y-auto px-4 py-2 space-y-5 scrollbar-thin">
         {/* Section: UTAMA */}
         <div>
-          <div className="px-3 mb-2 text-[10px] font-bold tracking-wider text-[#9ca3af] uppercase">
+          <div className="px-3 mb-1.5 text-[10px] font-bold tracking-wider text-[#9ca3af] uppercase">
             Utama
           </div>
           <nav className="space-y-1">
@@ -72,15 +78,6 @@ export const SellerSidebar: React.FC<SellerSidebarProps> = ({ onCloseMobile }) =
             >
               <LayoutDashboard className="w-4 h-4 shrink-0 stroke-[2.2]" />
               <span>DASHBOARD PENJUAL</span>
-            </NavLink>
-
-            <NavLink
-              to="/penjual/profil"
-              onClick={onCloseMobile}
-              className={navLinkClass}
-            >
-              <UserCheck className="w-4 h-4 shrink-0 stroke-[2]" />
-              <span>PROFIL PENJUAL & ULASAN</span>
             </NavLink>
 
             <NavLink
@@ -96,16 +93,22 @@ export const SellerSidebar: React.FC<SellerSidebarProps> = ({ onCloseMobile }) =
 
         {/* Section: PENJUALAN & LAYANAN */}
         <div>
-          <div className="px-3 mb-2 text-[10px] font-bold tracking-wider text-[#9ca3af] uppercase">
+          <div className="px-3 mb-1.5 text-[10px] font-bold tracking-wider text-[#9ca3af] uppercase">
             Penjualan & Layanan
           </div>
           <nav className="space-y-1">
             <NavLink
               to="/penjual/marketplace"
               onClick={onCloseMobile}
-              className={navLinkClass}
+              className={() =>
+                `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all duration-200 ${
+                  isMarketplaceActive
+                    ? 'bg-[#006738] text-white shadow-xs font-bold'
+                    : 'text-[#4b5563] hover:text-[#111827] hover:bg-[#f0f4f0]'
+                }`
+              }
             >
-              <Store className="w-4 h-4 shrink-0 stroke-[2]" />
+              <Store className="w-4 h-4 shrink-0 stroke-[2.2]" />
               <span>MARKETPLACE PANEN</span>
             </NavLink>
 
@@ -130,25 +133,33 @@ export const SellerSidebar: React.FC<SellerSidebarProps> = ({ onCloseMobile }) =
             <NavLink
               to="/penjual/analitik"
               onClick={onCloseMobile}
-              className={({ isActive }) =>
-                `flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all duration-200 ${
-                  isActive
-                    ? 'bg-[#006738] text-white shadow-sm font-bold'
-                    : 'text-[#4b5563] hover:text-[#111827] hover:bg-[#f0f4f0]'
-                }`
-              }
+              className={navLinkClass}
             >
-              <div className="flex items-center gap-3">
-                <BarChart3 className="w-4 h-4 shrink-0 stroke-[2]" />
-                <span>ANALITIK PENDAPATAN</span>
-              </div>
-              <ChevronDown className="w-3.5 h-3.5 opacity-60" />
+              <BarChart3 className="w-4 h-4 shrink-0 stroke-[2]" />
+              <span>ANALITIK PENDAPATAN</span>
+            </NavLink>
+          </nav>
+        </div>
+
+        {/* Section: BUDIDAYA */}
+        <div>
+          <div className="px-3 mb-1.5 text-[10px] font-bold tracking-wider text-[#9ca3af] uppercase">
+            Budidaya
+          </div>
+          <nav className="space-y-1">
+            <NavLink
+              to="/penjual/kalender"
+              onClick={onCloseMobile}
+              className={navLinkClass}
+            >
+              <CalendarDays className="w-4 h-4 shrink-0 stroke-[2]" />
+              <span>KALENDER TANAM & PANEN</span>
             </NavLink>
           </nav>
         </div>
 
         {/* Quick shortcut to store preview */}
-        <div className="pt-2">
+        <div className="pt-1">
           <a
             href="/"
             target="_blank"

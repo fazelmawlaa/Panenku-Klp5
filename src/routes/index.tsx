@@ -95,7 +95,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'produk',
-        element: <SellerProductsPage />,
+        element: <SellerMarketplacePage />,
       },
       {
         path: 'produk/tambah',
