@@ -20,6 +20,8 @@ export interface Product {
   pricePerUnit: number;
   unit: 'kg' | 'pcs';
   stock: number;
+  maxStock?: number;
+  rating?: number;
   harvestDate?: string;
   cultivation?: 'Organik' | 'Konvensional';
   image: string;
@@ -94,3 +96,24 @@ export interface ChatSession {
   messages: ChatMessage[];
   isPaid: boolean;
 }
+
+export interface BuyerStats {
+  pesananAktif: number;
+  pesananSedangPanen: number;
+  penghematan: number;
+  petaniFavorit: number;
+  totalTransaksi: number;
+}
+
+export type TransactionStatus = 'PAID' | 'SELESAI' | 'PENDING' | 'BATAL';
+
+export interface BuyerTransaction {
+  id: string;
+  code: string;
+  title: string;
+  date: string;
+  amount: number;
+  status: TransactionStatus;
+  type: 'konsultasi' | 'produk';
+}
+

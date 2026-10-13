@@ -3,7 +3,6 @@ import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Mentor, ChatSession, MentorCategory } from "@/types";
 import { mentorService } from "@/services";
-import { BuyerNavbar } from "@/components/layout/BuyerNavbar";
 import { MentorCard } from "../components/MentorCard";
 import { ChatModal } from "../components/ChatModal";
 import { StartSessionModal } from "../components/StartSessionModal";
@@ -68,35 +67,30 @@ export function KonsultasiPage() {
 
   if (view === "chat" && activeChatSessionId) {
     return (
-      <div className="min-h-screen bg-gray-50">
-        <BuyerNavbar userName={CURRENT_USER.name} userInitial={CURRENT_USER.initial} />
-        <div className="max-w-[1200px] mx-auto px-6 py-6">
-          <Link
-            to="#"
-            onClick={(e) => { e.preventDefault(); setView("list"); }}
-            className="inline-flex items-center gap-2 text-green-700 hover:text-green-800 text-sm mb-5 font-medium"
-          >
-            <ArrowLeft size={16} />
-            Kembali ke Konsultasi
-          </Link>
-          <ChatModal
-            sessions={sessions}
-            activeSessionId={activeChatSessionId}
-            onBack={() => setView("list")}
-            currentUserId={CURRENT_USER.id}
-            currentUserName={CURRENT_USER.name}
-          />
-        </div>
+      <div className="w-full">
+        <Link
+          to="#"
+          onClick={(e) => { e.preventDefault(); setView("list"); }}
+          className="inline-flex items-center gap-2 text-green-700 hover:text-green-800 text-sm mb-5 font-medium"
+        >
+          <ArrowLeft size={16} />
+          Kembali ke Konsultasi
+        </Link>
+        <ChatModal
+          sessions={sessions}
+          activeSessionId={activeChatSessionId}
+          onBack={() => setView("list")}
+          currentUserId={CURRENT_USER.id}
+          currentUserName={CURRENT_USER.name}
+        />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <BuyerNavbar userName={CURRENT_USER.name} userInitial={CURRENT_USER.initial} />
-
+    <div className="w-full space-y-6">
       {/* Hero Banner */}
-      <div className="relative overflow-hidden" style={{ height: "260px" }}>
+      <div className="relative rounded-2xl overflow-hidden shadow-xs" style={{ height: "220px" }}>
         <img
           src="/images/konsultasi-hero.jpg"
           alt="Konsultasi Petani"
@@ -107,16 +101,16 @@ export function KonsultasiPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
         {/* Hero text */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-4xl font-bold text-white text-center drop-shadow-lg">
+          <h1 className="text-3xl md:text-4xl font-bold text-white text-center drop-shadow-lg">
             Tanya Petani Mentor di{" "}
             <span className="text-yellow-400">PANENKU</span>
           </h1>
         </div>
         {/* Fallback gradient if no image */}
         <div
-          className="absolute inset-0 -z-10 bg-gradient-to-br from-green-800 via-green-600 to-emerald-500 flex items-center justify-center"
+          className="absolute inset-0 -z-10 bg-gradient-to-br from-[#1b4332] via-[#2d6a4f] to-emerald-600 flex items-center justify-center"
         >
-          <h1 className="text-4xl font-bold text-white text-center">
+          <h1 className="text-3xl md:text-4xl font-bold text-white text-center">
             Tanya Petani Mentor di{" "}
             <span className="text-yellow-400">PANENKU</span>
           </h1>
@@ -124,7 +118,7 @@ export function KonsultasiPage() {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-[1200px] mx-auto px-6 py-6">
+      <div>
         {/* Search Bar */}
         <div className="flex items-center gap-3 mb-6">
           <div className="flex-1 relative">
