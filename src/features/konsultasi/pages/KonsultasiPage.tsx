@@ -90,11 +90,11 @@ export function KonsultasiPage() {
   return (
     <div className="w-full space-y-6">
       {/* Hero Banner */}
-      <div className="relative rounded-2xl md:rounded-3xl overflow-hidden shadow-xs w-full bg-[#1b4332]">
+      <div className="w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-xs bg-[#1b4332]">
         <img
           src="/images/konsultasi-hero.jpg"
           alt="Tanya Petani Mentor di PANENKU"
-          className="w-full h-auto object-cover object-center max-h-[300px]"
+          className="w-full h-auto block select-none"
         />
         <h1 className="sr-only">Tanya Petani Mentor di PANENKU</h1>
       </div>
